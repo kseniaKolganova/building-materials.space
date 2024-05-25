@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Логи</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Подключение стилей -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <style>
+        /* Новые стили */
+        body {
+            background-color: #1f1f1f;
+            color: #fff;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background-color: #111; /* Черный с оттенком */
+            color: #fff;
+        }
+
+        table, th, td {
+            border: 1px solid #333; /* Черный с оттенком */
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Стиль заголовков и текста */
+        h2, p {
+            color: #ff5722; /* Оранжевый */
+        }
+
+        .back-button {
+            background-color: #800000; /* Темно-красный */
+        }
+
+        .back-button:hover {
+            background-color: #640000; /* Темно-красный с темным оттенком при наведении */
+        }
+
+        .edit-button, .delete-button, .add-button, .back-button {
+            text-decoration: none;
+            padding: 5px 10px;
+            margin: 2px;
+            border-radius: 5px;
+            display: inline-block;
+            transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+        .edit-button i, .delete-button i, .add-button i, .back-button i {
+            margin-right: 5px;
+        }
+
+        .edit-button:hover, .delete-button:hover, .add-button:hover, .back-button:hover {
+            transform: scale(1.1);
+            color: #333; /* Темно-серый */
+        }
+
+
+    </style>
+</head>
+<body>
+<div th:switch="${logs}" class="container my-5">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <div th:case="*">
+                <h2 class="my-5 text-center">Логи</h2>
+                <table class="mx-auto text-center">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Дата</th>
+                        <th>Действие клиента</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="log : ${logs}">
+                        <td th:text="${log.id}"></td>
+                        <td th:text="${log.dataLogs}"></td>
+                        <td th:text="${log.actionClient}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="my-5 text-center">
+                <a href="/admin-page" class="back-button">
+                    <i class="fas fa-arrow-left"></i> Назад
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

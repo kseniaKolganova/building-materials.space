@@ -1,0 +1,170 @@
+:root {
+    --main-color: #000;
+    --font-family: Comfortaa;
+    --font-weight-bold: 700;
+    --font-weight-regular: 400;
+}
+
+.info-block {
+    width: 100%;
+    background-color: #fff;
+    border: 1px var(--main-color);
+    border-radius: 15px;
+    box-shadow: -7px 3px 20px grey;
+}
+
+.block-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    padding: 20px;
+}
+
+.profile-block {
+    margin-top: 59px;
+
+    .profile-img-name {
+        display: flex;
+        justify-content: space-between;
+
+        .person-info {
+            display: flex;
+            align-items: center;
+
+            img {
+                border-radius: 100px;
+                width: 60px;
+                height: 60px;
+                max-width: 60px;
+                max-height: 60px;
+                margin: 10px;
+            }
+    
+            h3 {
+                color: var(--main-color);
+                font-family: var(--font-family);
+                font-size: clamp(20px, 2vw, 28px);
+                font-style: normal;
+                font-weight: var(--font-weight-regular);
+                line-height: normal;
+            }
+        }
+
+        button {
+            height: 48px;
+            margin: 5px;
+            background: #0079A8;
+            color: #fff;
+            border-radius: 17px;
+            border: none;
+            font-family: 'Open Sans';
+            font-size: 18px;
+            margin: 20px;
+        }
+    }
+
+}
+
+.profile-block {
+    margin-top: 59px;
+
+    p {
+        color: var(--main-color);
+        font-family: var(--font-family);
+        font-size: clamp(16px, 2vw, 25px);
+        font-weight: var(--font-weight-bold);
+        position: relative;
+
+        // &::after {
+        //     content: ''; /* Обязательно указываем контент для псевдоэлемента */
+        //     position: absolute;
+        //     top: 50%;
+        //     margin-left: 5px;
+        //     transform: translateY(-50%);
+        //     width: 20px; /* Укажите ширину и высоту иконки */
+        //     height: 20px;
+        //     background: url('../images/edit.svg') no-repeat center center; /* Путь к вашей SVG иконке */
+        //     background-size: contain; /* Чтобы изображение вмещалось в размеры блока */
+        //     cursor: pointer;
+        // }
+    }
+
+    span {
+        display: block;
+        margin-top: 5px;
+        color: var(--main-color);
+        font-family: var(--font-family);
+        font-size: clamp(12px, 2vw, 22px);
+        font-weight: var(--font-weight-regular);
+    }
+
+    
+}
+
+.order-block {
+    margin-top: 35px;
+
+    h3 {
+        color: var(--main-color);
+        font-family: var(--font-family);
+        font-size: clamp(16px, 2vw, 25px);
+        font-weight: var(--font-weight-bold);
+    }
+
+    span {
+        display: block;
+        margin-top: 10px;
+        color: var(--main-color);
+        font-family: var(--font-family);
+        font-size: clamp(10px, 2vw, 18px);
+        font-weight: var(--font-weight-regular);
+    }
+}
+
+.actual-order-block {
+    margin-top: 35px;
+
+    h2 {
+        padding: 20px 0 0 20px;
+        color: var(--main-color);
+        font-family: var(--font-family);
+        font-size: clamp(20px, 2vw, 38px);
+        font-weight: var(--font-weight-regular);
+    }
+    .actual-order {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        align-items: center;
+        justify-content: center;
+        
+        img {
+            max-height: 250px;
+            width: auto;
+            border: 1px ;
+            border-color: #000;
+            padding: 20px;
+        }
+    
+        .actual-order-info {
+
+            h3 {
+                color: var(--main-color);
+                font-family: var(--font-family);
+                font-size: clamp(10px, 2vw, 18px);
+                font-style: normal;
+                font-weight: var(--font-weight-bold);
+                line-height: normal;
+            }
+        
+            p {
+                margin-top: 5px;
+                color: var(--main-color);
+                font-family: var(--font-family);
+                font-size: clamp(12px, 2vw, 22px);
+                font-weight: var(--font-weight-regular);
+            }
+        }
+    
+        
+    }
+}

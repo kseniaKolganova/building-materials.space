@@ -1,0 +1,175 @@
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Comfortaa:300,regular,500,600,700);
+img {
+  width: 100%;
+  height: auto;
+}
+body {
+  background-color: #F9F9F9;
+}
+body .container {
+  margin-top: 50px;
+}
+body .container .col {
+  align-items: center;
+}
+body .container .col h2 {
+  color: #000;
+  font-family: "Comfortaa";
+  font-size: clamp(40px, 4vw, 60px);
+  font-weight: 700;
+}
+body .container .col p {
+  color: #6C696F;
+  font-family: "Open Sans", sans-serif;
+  font-size: clamp(18px, 4vw, 30px);
+  font-weight: 400;
+}
+body .container .col .main-picture {
+  width: 100%;
+  height: auto;
+}
+body .pluses {
+  width: 100%;
+  background-color: #F9AC2F;
+}
+body .pluses .row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+}
+body .pluses .row .col {
+  text-align: center;
+  position: relative;
+  margin: 0 10px;
+}
+body .pluses .row .col img {
+  width: 100%;
+  height: 200px;
+  opacity: 0.6;
+  border-radius: 20px;
+}
+body .pluses .row .col p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #000;
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 600;
+}
+body .container section {
+  margin-top: 114px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body .container section h2 {
+  color: #000;
+  font-family: Comfortaa;
+  font-size: clamp(18px, 3vw, 38px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+body .container section .col .card {
+  height: 80%;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0px 8px 70px rgba(0, 0, 0, 0.07);
+  border-radius: 10px;
+  position: relative;
+  margin: 20px auto;
+  transition: 1s;
+}
+body .container section .col .card::after {
+  position: absolute;
+  height: 100%;
+}
+body .container section .col .card:hover {
+  transform: scale(1.1);
+  backface-visibility: hidden;
+}
+body .container section .col .card img {
+  max-width: 100%;
+  max-height: 100%;
+  height: 300px;
+  width: 300px;
+  border-radius: 20px;
+  transition: 1s;
+}
+body .container section .col .card .info {
+  padding: 10px;
+  background-color: #fff;
+}
+body .container section .col .card .info .card-name {
+  font-family: Comfortaa;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 25px;
+  color: #030A1B;
+  min-height: 50px;
+  text-align: center
+}
+body .container section .col .card .info .card-price {
+  color: #000;
+  font-family: Comfortaa;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-align: center
+}
+body .container section .col .card .info .card-price::after {
+  content: "₽";
+  margin-left: 4px;
+}
+body .container section .col .card button {
+  height: 50px;
+  background: #0079A8;
+  color: #fff;
+  border-radius: 40px;
+  border: none;
+  font-family: "Open Sans";
+  font-size: 18px;
+  margin-top: auto;
+}
+
+body .container .description {
+  margin-top: 100px;
+}
+body .container .description h2 {
+  color: #0079A8;
+  text-align: center;
+  font-family: Comfortaa;
+  font-size: clamp(28px, 4vw, 48px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+body .container .description .desc-title {
+  color: #000;
+  text-align: center;
+  font-family: Comfortaa;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  font-size: clamp(14px, 3vw, 24px);
+}
+body .container .description .desc-text {
+  color: #000;
+  font-family: Comfortaa;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  font-size: clamp(12px, 3vw, 16px);
+  text-indent: 20px;
+}
+
+.col.col-4 img {
+  height: 320px;
+  width: 520px;
+  border-radius: 15px;
+}

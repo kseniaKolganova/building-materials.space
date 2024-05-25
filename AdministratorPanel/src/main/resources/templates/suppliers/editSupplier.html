@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Изменение категории</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1f1f1f;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+            color: #ff5722;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #111;
+            border: 1px solid #333;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: #ff5722;
+        }
+
+        input[type="text"],
+        input[type="email"]{
+            width: 95%;
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #333;
+            color: #fff;
+            transition: color 0.3s ease-in-out;
+        }
+
+        input[type="text"]:hover {
+            color: #444; /* Чуть более темный цвет при наведении */
+        }
+
+        .error-message {
+            color: #d9534f;
+            font-size: 14px;
+        }
+
+        .submit-button {
+            background-color: #ff5722;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .submit-button:hover {
+            background-color: #f4511e;
+            transform: scale(1.05); /* Плавное увеличение при наведении */
+        }
+
+        .icon {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h2>Изменение поставщика</h2>
+    <div class="container">
+        <form th:action="@{/suppliers/editSupplier/{id}(id=${supplier.id})}" th:object="${supplier}" method="post">
+            <div class="form-group">
+                <label for="name">
+                    <i class="fas fa-tag icon"></i> Название поставщика
+                </label>
+                <input type="text" th:field="*{name}" id="name" placeholder="Название поставщика" required minlength="4" maxlength="50"
+                       title="Минимальная длина - 4. Максимальная - 50.">
+                <span class="error-message" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+            </div>
+            <div class="form-group">
+                <label for="address">
+                    <i class="fas fa-home icon"></i> Адрес
+                </label>
+                <input type="text" th:field="*{address}" id="address" placeholder="Адрес" required minlength="4" maxlength="255"
+                       title="Минимальная длина - 4. Максимальная - 255.">
+                <span class="error-message" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></span>
+            </div>
+            <div class="form-group">
+                <label for="email">
+                    <i class="fas fa-envelope icon"></i> Электронная почта
+                </label>
+                <input type="email" th:field="*{email}" id="email" placeholder="Электронная почта" required minlength="4" maxlength="50"
+                       title="Минимальная длина - 4. Максимальная - 50.">
+                <span class="error-message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+            </div>
+            <div class="form-group">
+                <label for="phoneNumber">
+                    <i class="fas fa-phone icon"></i> Номер телефона
+                </label>
+                <input type="text" th:field="*{phoneNumber}" id="phoneNumber" placeholder="Номер телефона" required minlength="12" maxlength="12"
+                       pattern="\+\d{11}" title="Введите номер телефона в формате +791681111753.">
+                <span class="error-message" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span>
+            </div>
+            <div class="form-group">
+                <label for="deliveryItems">
+                    <i class="fas fa-truck icon"></i> Поставляемые товары
+                </label>
+                <input type="text" th:field="*{deliveryItems}" id="deliveryItems" placeholder="Поставляемые товары" required minlength="4" maxlength="255"
+                       title="Минимальная длина - 4. Максимальная - 255.">
+                <span class="error-message" th:if="${#fields.hasErrors('deliveryItems')}" th:errors="*{deliveryItems}"></span>
+            </div>
+            <div>
+                <button type="submit" class="submit-button">
+                    <i class="fas fa-save icon"></i> Сохранить поставщика
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

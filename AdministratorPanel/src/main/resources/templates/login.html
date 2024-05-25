@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AUTH</title>
+  <style>
+    /*Main*/
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1f1f1f; /* Светло-серый цвет фона */
+      text-align: center;
+      padding: 50px;
+      color: #333; /* Темно-серый цвет текста */
+    }
+
+    #login-container {
+      background-color: #ffffff; /* Белый цвет формы */
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); /* Увеличил силу тени */
+      padding: 20px;
+      max-width: 400px;
+      margin: 0 auto;
+      animation: flicker 3s infinite; /* Уменьшил интервал анимации */
+      animation-fill-mode: both;
+    }
+
+    .login-header {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #69d5db; /* Оранжевый цвет заголовка */
+    }
+
+    .form-group {
+      margin-bottom: 10px;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: #69d5db; /* Оранжевый цвет текста лейблов */
+    }
+
+    .form-group input {
+      width: calc(100% - 22px);
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    .form-group input[type="submit"] {
+      background-color: #69d5db;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      padding: 10px 20px;
+      cursor: pointer;
+      width: auto;
+    }
+
+    .form-group input[type="submit"]:hover {
+      background-color: #69d5db;
+    }
+
+    .error-message {
+      color: #ff0000;
+    }
+
+    .registration-link {
+      color: #007bff;
+      text-decoration: none;
+      display: block;
+      margin-top: 20px;
+    }
+
+    .registration-link:hover {
+      color: #0056b3;
+    }
+
+    /* Изменен цвет мерцания тени */
+    @keyframes flicker {
+      0% {
+        box-shadow: 0 0 10px rgba(255, 73, 0, 0.3); /* Оранжевый цвет тени */
+      }
+      50% {
+        box-shadow: 0 0 15px rgba(255, 73, 0, 0.6); /* Оранжевый цвет тени */
+      }
+      100% {
+        box-shadow: 0 0 10px rgba(255, 73, 0, 0.3); /* Оранжевый цвет тени */
+      }
+    }
+
+    /* Добавленные стили для увеличения при наведении */
+    .form-group input[type="submit"]:hover,
+    .registration-link:hover {
+      transform: scale(1.1);
+      transition: transform 0.5s ease-in-out;
+    }
+
+  </style>
+</head>
+<body>
+<div id="login-container" class="slide-in">
+  <h1 class="login-header">Авторизация</h1>
+  <div th:if="${param.error}" class="error-message">
+    Неверное имя пользователя или пароль.
+  </div>
+  <form th:action="@{/login}" method="post">
+    <div class="form-group">
+      <label>Логин:
+        <input type="text" name="username" required minlength="6" maxlength="40" pattern="[A-Za-z0-9]+"
+               title="Логин должен содержать только латинские буквы и цифры"/>
+      </label>
+    </div>
+    <div class="form-group">
+      <label>Пароль:
+        <input type="password" name="password" required minlength="6" maxlength="20" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+]{6,}$"
+               title="Минимальная длина пароля - 6. Пароль должен содержать минимум одну букву, одну цифру, один специальный символ"/>
+      </label>
+    </div>
+    <div class="form-group">
+      <input type="submit" value="Авторизация"/>
+      <a href="/registration" class="registration-link">Нет аккаунта? Регистрация.</a>
+    </div>
+  </form>
+</div>
+</body>
+</html>

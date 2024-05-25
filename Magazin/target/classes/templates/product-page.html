@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link
+            href="https://fonts.googleapis.com/css?family=Open+Sans:300,regular,500,600,700,800,300italic,italic,500italic,600italic,700italic,800italic"
+            rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa:300,regular,500,600,700" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/product-page.css" />
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <title>Document</title>
+</head>
+
+<body>
+<header>
+    <nav>
+        <div class="left-section">
+            <a href="/main"><img src="/images/logoimage.png"></a>
+            <ul class="main-links">
+                <li><a href="/main">Главная</a></li>
+                <li><a href="/catalog">Каталог</a></li>
+            </ul>
+        </div>
+        <ul class="icon-links">
+
+            <li><a href="/cart" data-tooltip="Корзина"><iconify-icon icon="uil:cart" width="30" height="30"></iconify-icon></a></li>
+            <li><a href="/favorite" data-tooltip="Избранное"><iconify-icon icon="mdi:heart-outline" width="30" height="30"></iconify-icon></a></li>
+            <li><a href="/profile" data-tooltip="Профиль"><iconify-icon icon="iconamoon:profile" width="30" height="30"></iconify-icon></a></li>
+            <li><a href="/authorization" data-tooltip="Вход"><iconify-icon icon="uil:signin" width="30" height="30"></iconify-icon></a></li>
+        </ul>
+    </nav>
+</header>
+<div class="container">
+    <div class="product-name">
+        <h2 th:text="${product.name}"></h2>
+        <p th:text="'Артикул: ' + ${product.articul}"></p>
+    </div>
+    <div class="info-block product-block">
+        <div class="product-information">
+            <div class="little-images">
+                <th:block th:each="photo, iterStat : ${product.photos}">
+                    <img th:src="@{/images/__${photo.url}__.png}" alt="Product Image" th:data-index="${iterStat.index}" onclick="updateMainImage(this)">
+                </th:block>
+            </div>
+            <div class="main-image">
+                <img id="mainProductImage" th:src="@{/images/__${product.photos[0].url}__.png}" alt="Main Product Image">
+            </div>
+            <div class="product-info">
+                <div class="info-col">
+                    <p>Страна</p>
+                    <span th:text="${product.country}"></span>
+                </div>
+                <div class="info-col">
+                    <p>Цвет</p>
+                    <span th:text="${product.colors}"></span>
+                </div>
+                <div class="info-col">
+                    <p>Цена</p>
+                    <span th:text="${product.price}"> </span>
+                </div>
+                <h4>14 дней на возврат</h4>
+                <div class="product-buy">
+                    <form action="/add-to-cart" method="post" th:action="@{/add-to-cart}" th:object="${yourFormObject}" th:method="post">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                        <input type="hidden" name="productId" th:value="${product.id}">
+                        <button type="submit">Добавить в корзину</button>
+                    </form>
+
+
+                    <form action="/add-to-favorites" method="post" th:action="@{/add-to-favorites}" th:object="${favoriteForm}" th:method="post">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                        <input type="hidden" name="productId" th:value="${product.getId()}">
+                        <button type="submit">  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                                     class="bi bi-heart" viewBox="0 0 16 16">
+                            <path
+                                    d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                        </svg></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="product-description ">
+            <div class="row">
+                <div class="col product-specific">
+                    <h2>О товаре</h2>
+                    <h3>Дополнительная информация</h3>
+                    <div class="atribute">
+                        <p>Количество на складе</p>
+                        <span th:text="${product.availableQuantity}"></span>
+                    </div>
+
+                </div>
+                <div class="col product-desc">
+                    <h2>Описание</h2>
+                    <p th:text="${product.description}"></p>
+
+                    <h2>Модель</h2>
+                    <p th:text="${product.models}"></p>
+
+                    <h2>Марка</h2>
+                    <p th:text="${product.marka}"></p>
+
+                    <h2>Вес</h2>
+                    <p th:text="${product.weight}"></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="reviews">
+        <h2>Отзывы</h2>
+        <br>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <th:block th:each="review : ${product.reviews}">
+                        <div class="review-card">
+                            <div class="review-user-info">
+                                <p th:text="${review.name}"></p>
+                            </div>
+                            <br>
+                            <div class="review-user-info">
+                                <p>Оценка: <span th:text="${review.rating}"></span></p>
+                            </div>
+                            <div class="review-description">
+                                <p th:text="${review.message}"></p>
+                            </div>
+                        </div>
+                        <hr>
+                    </th:block>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-block review-form-block">
+        <h2>Отзыв о продукте</h2>
+        <p>Все поля обязательны для заполнения</p>
+        <div class="review-form">
+            <form action="/catalog/add-review" method="post" th:action="@{/catalog/add-review}" th:object="${review}" th:method="post">
+                <div class="input-fields">
+                    <input type="hidden" name="productId" th:value="${product.id}">
+                    <div class="row">
+                        <div class="col-4">
+                            <p>Ваше имя</p>
+                            <input type="text" th:field="*{name}" required minlength="2" maxlength="50" title="Мин. 2 символа, макс. 50 символов">
+                        </div>
+                        <div class="col-4">
+                            <p>Оценка</p>
+                            <input type="number" th:field="*{rating}" required min="1" max="5" title="Введите оценку от 1 до 5">
+                        </div>
+                        <div class="col-8">
+                            <p>Сообщение</p>
+                            <textarea th:field="*{message}" required minlength="10" maxlength="500" title="Мин. 10 символов, макс. 500 символов"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit">Отправить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+<br>
+<br>
+<footer>
+    <div class="left-section">
+        <div class="logo-section">
+            <img src="/images/logoimage.png" alt="">
+        </div>
+        <br>
+        <div class="social-section">
+            <p class="connect">Connect With Us</p>
+            <br>
+            <div class="social-networks">
+                <a href="https://t.me/s/stdpetrovich?before=1191" target="_blank"><img src="/images/telegram.png" alt="Telegram">  </a>
+                <a href="https://www.facebook.com/petrovichstd/?locale=ru_RU" target="_blank"><img src="/images/facebook.png" alt="Facebook"></a>
+                <a href="https://vk.com/petrovichstd" target="_blank"><img src="/images/vk.png" alt="VK"></a>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="center-section">
+        <div class="contact-section">
+            <p>Email: atlantidashop@gmail.com</p>
+            <p>Phone: +8 (800) 800-2560</p>
+            <p>Address: 4619 ул. Большие Котелки д.121 пом.2, Москва</p>
+        </div>
+        <br>
+        <br>
+        <div class="support-section">
+            <a href="/support">Connect with Support</a>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="bottom-section">
+        <div class="copyright-section">
+            <p>&copy; 2013-2023 Atlantida. Все права защищены.</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+<script>
+    function addToCart(productId) {
+        document.getElementById('productIdInput').value = productId;
+        document.getElementById('addToCartForm').submit();
+    }
+</script>
+
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+<script>
+    function updateMainImage(imgElement) {
+        var index = imgElement.getAttribute("data-index");
+
+        var mainImage = document.getElementById("mainProductImage");
+
+        mainImage.src = imgElement.src;
+    }
+</script>
+
+</html>

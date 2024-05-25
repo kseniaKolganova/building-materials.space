@@ -1,0 +1,83 @@
+body {
+    background-color: #fff;
+
+    .container {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        padding: 30px;
+        background-color: #f4f4f4;
+        border: 1px solid;
+        border-radius: 10px;
+        border-color: #000;
+        border-width: 2px;
+        width: 50vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center horizontally */
+
+        img {
+            width: 10vw;
+            height: 10vw;
+            max-width: 70px;
+            max-height: 70px;
+            position: absolute;
+            right: 10px; /* Adjust the right distance */
+            top: 10px; /* Adjust the top distance */
+        }
+
+        .input-fields {
+            width: 100%;
+
+            p {
+                font-family: 'Open Sans', sans-serif;
+                font-weight: 700;
+                color: #F9AC2F;
+            }
+
+            input {
+                background-color: #CBE3F4;
+                border-radius: 5px;
+                border: none;
+                width: 100%;
+                height: 40px;
+            }
+
+            textarea {
+                background-color: #CBE3F4;
+                border-radius: 5px;
+                border: none;
+                width: 100%;
+                height: 40px;
+            }
+
+           
+        }
+
+        button {
+            font-family: 'Open Sans', sans-serif;
+            height: 60px;
+            width: 100%;
+            background-color: #F9AC2F;
+            color: #000;
+            margin-top: 40px;
+            border-radius: 10px;
+            border: none;
+        }
+
+        .links {
+            display: grid;
+            grid-template-columns: 1fr; /* Two columns with equal width */
+            gap: 10px; /* Adjust the gap between columns */
+            margin-top: 20px;
+            place-items: center;
+            
+            a {
+                font-family: 'Open Sans', sans-serif;
+                text-decoration: none;
+                color: #000;
+            }
+        }
+    }
+}

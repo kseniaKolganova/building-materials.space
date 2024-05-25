@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Регистрация</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1f1f1f;
+      text-align: center;
+      padding: 50px;
+    }
+
+    .registration-container {
+      background-color: #ffffff; /* Белый цвет формы */
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 300px;
+      margin: 0 auto;
+    }
+
+    .registration-container h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #69d5db; /* Оранжевый цвет заголовка */
+    }
+
+    .registration-container label {
+      display: block;
+      margin-bottom: 10px;
+      color: #69d5db; /* Оранжевый цвет текста лейблов */
+    }
+
+    .registration-container input[type="text"],
+    .registration-container input[type="password"],
+    .registration-container input[type="email"]{
+      width: 95%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+
+    .registration-container input[type="submit"] {
+      background-color: #69d5db; /* Синий цвет кнопки */
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+
+    .registration-container input[type="submit"]:hover {
+      background-color: #69d5db; /* Темно-синий цвет при наведении */
+    }
+
+    .error-message {
+      color: #ff0000;
+    }
+
+    .registration-link {
+      color: #007bff;
+      text-decoration: none;
+      display: block;
+      margin-top: 20px;
+    }
+
+    .registration-link:hover {
+      color: #0056b3;
+    }
+
+    #login-container {
+      background-color: #ffffff; /* Белый цвет формы */
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); /* Увеличил силу тени */
+      padding: 20px;
+      max-width: 400px;
+      margin: 0 auto;
+      animation: flicker 3s infinite; /* Уменьшил интервал анимации */
+      animation-fill-mode: both;
+    }
+
+    /* Изменен цвет мерцания тени */
+    @keyframes flicker {
+      0% {
+        box-shadow: 0 0 10px rgba(255, 73, 0, 0.3); /* Оранжевый цвет тени */
+      }
+      50% {
+        box-shadow: 0 0 15px rgba(255, 73, 0, 0.6); /* Оранжевый цвет тени */
+      }
+      100% {
+        box-shadow: 0 0 10px rgba(255, 73, 0, 0.3); /* Оранжевый цвет тени */
+      }
+    }
+
+    /* Добавленные стили для увеличения при наведении */
+    .form-group input[type="submit"]:hover,
+    .registration-link:hover {
+      transform: scale(1.1);
+      transition: transform 0.5s ease-in-out;
+    }
+
+  </style>
+</head>
+<body>
+<div id="login-container" class="registration-container">
+  <h1>Регистрация</h1>
+  <div th:if="${message}" class="error-message">
+    Пользователь уже существует
+  </div>
+  <form th:action="@{/registration}" method="post">
+    <div><label>Имя: <input type="text" name="name" required minlength="2" maxlength="50"
+                            title="Минимальная длинна Имени -2, максимальная - 50"/> </label></div>
+    <div><label>Фамилия: <input type="text" name="surname" required minlength="2" maxlength="50"
+                                title="Минимальная длинна Фамилии -2, максимальная - 50"/> </label></div>
+    <div><label>Отчество: <input type="text" name="middlename"/> </label></div>
+    <div><label>Логин: <input type="text" name="login" required minlength="6" maxlength="40" pattern="[A-Za-z0-9]+"
+                              title="Логин должен содержать только латинские буквы и цифры"/> </label></div>
+    <div><label>Пароль: <input type="password" name="password" required minlength="1" maxlength="255" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+]{6,}$"
+                               title="Минимальная длина пароля - 6. Пароль должен содержать минимум одну букву, одну цифру, один специальный символ"/> </label></div>
+    <div><label>Email: <input type="email" name="email" required minlength="6" maxlength="20"
+                              title="Необходимо заполнить это поле в соотвествии с этим форматом: ivan@gmail.com"/> </label></div>
+    <div><input type="submit" value="Регистрация"/></div>
+    <a href="/login" class="registration-link">Уже есть аккаунт? Авторизоваться.</a>
+  </form>
+</div>
+</body>
+</html>

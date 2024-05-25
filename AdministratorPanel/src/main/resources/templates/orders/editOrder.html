@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Изменение категории</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1f1f1f;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+            color: #69d5db;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #111;
+            border: 1px solid #333;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: #69d5db;
+        }
+
+        input[type="text"] {
+            width: 95%;
+            padding: 10px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #333;
+            color: #fff;
+            transition: color 0.3s ease-in-out;
+        }
+
+        input[type="text"]:hover {
+            color: #444; /* Чуть более темный цвет при наведении */
+        }
+
+        .error-message {
+            color: #d9534f;
+            font-size: 14px;
+        }
+
+        .submit-button {
+            background-color: #69d5db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .submit-button:hover {
+            background-color: #69d5db;
+            transform: scale(1.05); /* Плавное увеличение при наведении */
+        }
+
+        .icon {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h2>Изменение заказа</h2>
+    <div class="container">
+        <form th:action="@{/orders/editOrder/{id}(id=${order.id})}" th:object="${order}" method="post">
+            <div class="form-group">
+                <label for="orderNumber">
+                    <i class="fas fa-tag icon"></i> Номер заказа
+                </label>
+                <input type="text" th:field="*{orderNumber}" id="orderNumber" placeholder="Номер заказа" required>
+                <span class="error-message" th:if="${#fields.hasErrors('orderNumber')}" th:errors="*{orderNumber}"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="deliveryAddress">
+                    <i class="fas fa-map-marker-alt icon"></i> Адрес доставки
+                </label>
+                <input type="text" th:field="*{deliveryAddress}" id="deliveryAddress" placeholder="Адрес доставки" required>
+                <span class="error-message" th:if="${#fields.hasErrors('deliveryAddress')}" th:errors="*{deliveryAddress}"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="cardNumber">
+                    <i class="far fa-credit-card icon"></i> Номер карты
+                </label>
+                <input type="text" th:field="*{cardNumber}" id="cardNumber" placeholder="Номер карты">
+                <span class="error-message" th:if="${#fields.hasErrors('cardNumber')}" th:errors="*{cardNumber}"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="expiryDate">
+                    <i class="far fa-calendar-alt icon"></i> Срок действия карты
+                </label>
+                <input type="text" th:field="*{expiryDate}" id="expiryDate" placeholder="Срок действия карты">
+                <span class="error-message" th:if="${#fields.hasErrors('expiryDate')}" th:errors="*{expiryDate}"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="cardHolderName">
+                    <i class="far fa-user icon"></i> Владелец карты
+                </label>
+                <input type="text" th:field="*{cardHolderName}" id="cardHolderName" placeholder="Владелец карты">
+                <span class="error-message" th:if="${#fields.hasErrors('cardHolderName')}" th:errors="*{cardHolderName}"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="paymentMethod">
+                    <i class="fas fa-credit-card icon"></i> Способ оплаты
+                </label>
+                <select th:field="*{paymentMethod}" id="paymentMethod" required>
+                    <option value="card">Картой</option>
+                    <option value="cash">Наличными</option>
+                </select>
+                <span class="error-message" th:if="${#fields.hasErrors('paymentMethod')}" th:errors="*{paymentMethod}"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="deliveryMethod">
+                    <i class="fas fa-truck icon"></i> Способ доставки
+                </label>
+                <select th:field="*{deliveryMethod}" id="deliveryMethod" required>
+                    <option value="courier">Курьером</option>
+                    <option value="pickup">Пункт выдачи</option>
+                </select>
+                <span class="error-message" th:if="${#fields.hasErrors('deliveryMethod')}" th:errors="*{deliveryMethod}"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="totalQuantity">
+                    <i class="fas fa-shopping-cart icon"></i> Общее количество товаров
+                </label>
+                <input type="number" th:field="*{totalQuantity}" id="totalQuantity" placeholder="Общее количество товаров" required>
+                <span class="error-message" th:if="${#fields.hasErrors('totalQuantity')}" th:errors="*{totalQuantity}"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="totalAmount">
+                    <i class="fas fa-dollar-sign icon"></i> Общая сумма заказа
+                </label>
+                <input type="number" th:field="*{totalAmount}" id="totalAmount" placeholder="Общая сумма заказа" required step="0.01">
+                <span class="error-message" th:if="${#fields.hasErrors('totalAmount')}" th:errors="*{totalAmount}"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="orderDate">
+                    <i class="far fa-calendar-alt icon"></i> Дата заказа
+                </label>
+                <input type="date" th:field="*{orderDate}" id="orderDate" placeholder="Дата заказа" required>
+                <span class="error-message" th:if="${#fields.hasErrors('orderDate')}" th:errors="*{orderDate}"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="userId">
+                    <i class="fas fa-user icon"></i> ID пользователя
+                </label>
+                <input type="text" th:value="*{userId}" id="userId" placeholder="ID пользователя" readonly>
+                <span class="error-message" th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="client">
+                    <i class="fas fa-user icon"></i> Клиент
+                </label>
+                <select th:field="*{client.id}" id="client" required onchange="fillUserId()">
+                    <!-- Add options dynamically based on available Client entities -->
+                    <option th:each="client : ${clients}" th:value="${client.id}" th:text="${client.name}"></option>
+                </select>
+                <span class="error-message" th:if="${#fields.hasErrors('client')}" th:errors="*{client}"></span>
+            </div>
+
+            <div>
+                <button type="submit" class="submit-button">
+                    <i class="fas fa-save icon"></i> Сохранить заказ
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var numberInputs = document.querySelectorAll('input[type="number"]');
+
+        numberInputs.forEach(function (input) {
+            input.addEventListener('input', function () {
+                if (this.value < 0) {
+                    this.value = 0;
+                }
+            });
+        });
+    });
+</script>
+
+<script th:inline="javascript">
+    // JavaScript-код для автоматического заполнения ID пользователя
+    function fillUserId() {
+        var userIdField = document.getElementById('userId');
+        var clientDropdown = document.getElementById('client');
+
+        // Установка значения userId из выбранного значения клиента
+        userIdField.value = clientDropdown.options[clientDropdown.selectedIndex].value;
+    }
+</script>
+
+</html>

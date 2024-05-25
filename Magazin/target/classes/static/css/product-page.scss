@@ -1,0 +1,352 @@
+:root {
+    --main-color: #000;
+    --gray-color: #B0B0B0;
+    --font-family: Comfortaa;
+    --font-weight-bold: 700;
+    --font-weight-regular: 400;
+}
+
+.info-block {
+    width: 100%;
+    background-color: #fff;
+    border: 1px var(--main-color);
+    border-radius: 15px;
+    box-shadow: -7px 3px 20px grey;
+}
+
+.block-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    padding: 20px;
+}
+
+.container {
+
+    .product-name {
+        margin-top: 50px;
+
+        h2 {
+            color: var(--main-color);
+            font-family: var(--font-family);
+            font-size: clamp(20px, 2vw, 40px);
+            font-weight: var(--font-weight-regular);
+        }
+
+        p {
+            margin-top: 24px;
+            color: var(--main-color);
+            font-family: var(--font-family);
+            font-size: clamp(14px, 2vw, 24px);
+            font-weight: var(--font-weight-regular);
+        }
+    }
+
+    .product-block {
+        margin-top: 50px;
+        min-height: 200px;
+        padding: 10px;
+
+        .product-information {
+            display: flex;
+            // background-color: aqua;
+
+            .little-images {
+                display: flex;
+                flex-direction: column;
+                /* Устанавливаем направление расположения элементов в колонке */
+                align-items: flex-start;
+                // background-color: blue;
+                width: 15%;
+
+                img {
+                    width: 100%;
+                    height: auto;
+                    /* Занимает 100% ширины родительского контейнера */
+                    max-height: 150px;
+                    margin: 5px 15px 0 15px;
+                    border-radius: 15px;
+                    box-shadow: -7px 3px 20px grey;
+                }
+            }
+
+            .main-image {
+                margin-left: 30px;
+                width: 40%;
+                align-self: center;
+                /* Центрируем по вертикали */
+
+
+                img {
+                    width: 90%;
+                    height: auto;
+                    border-radius: 15px;
+                    box-shadow: -7px 3px 20px grey;
+                }
+            }
+
+            .product-info {
+                padding: 20px;
+                align-self: center;
+                /* Центрируем по вертикали */
+
+                .info-col {
+                    display: flex;
+                    margin-top: 10px;
+
+                    p {
+                        color: var(--main-color);
+                        font-family: var(--font-family);
+                        font-size: clamp(20px, 2vw, 40px);
+                        font-weight: var(--font-weight-bold);
+                    }
+
+                    span {
+                        margin-left: 10px;
+                        color: var(--main-color);
+                        font-family: var(--font-family);
+                        font-size: clamp(14px, 2vw, 24px);
+                        font-weight: var(--font-weight-regular);
+                    }
+                }
+
+                h4 {
+                    margin-top: 10px;
+                    color: var(--gray-color);
+                    font-family: var(--font-family);
+                    font-size: clamp(14px, 2vw, 24px);
+                    font-weight: var(--font-weight-regular);
+                }
+
+                .product-buy {
+                    margin-top: 20px;
+
+                    button {
+                        height: 48px;
+                        width: 70%;
+                        /* Ширина в 50% от родительского элемента */
+                        max-width: 214px;
+                        margin: 5px;
+                        background: #2E6EFF;
+                        color: #fff;
+                        border-radius: 17px;
+                        border: none;
+                        font-family: 'Open Sans';
+                        font-size: 16px;
+                        vertical-align: middle;
+                        /* Выравнивание по вертикали */
+
+                    }
+
+                    svg {
+                        margin-left: 5px;
+                        width: 30px;
+                        height: 30px;
+                        vertical-align: middle;
+                        /* Выравнивание по вертикали */
+
+                    }
+                }
+            }
+        }
+
+
+        .product-description {
+            margin-top: 100px;
+            padding: 30px;
+
+            .product-specific {
+
+                h2 {
+                    color: var(--main-color);
+                    font-family: var(--font-family);
+                    font-size: clamp(20px, 2vw, 48px);
+                    font-weight: var(--font-weight-bold);
+                }
+
+                h3 {
+                    margin-top: 10px;
+                    color: var(--main-color);
+                    font-family: var(--font-family);
+                    font-size: clamp(14px, 2vw, 28px);
+                    font-weight: var(--font-weight-regular)
+                }
+
+                .atribute {
+                    display: flex;
+                    margin-top: 8px;
+
+                    p {
+                        color: var(--main-color);
+                        font-family: var(--font-family);
+                        font-size: clamp(12px, 2vw, 18px);
+                        font-weight: var(--font-weight-regular)
+                    }
+
+                    span {
+                        margin-left: 8px;
+                        color: var(--gray-color);
+                        font-family: var(--font-family);
+                        font-size: clamp(12px, 2vw, 18px);
+                        font-weight: var(--font-weight-regular)
+                    }
+                }
+            }
+
+            .product-specific {
+                h2 {
+                    color: var(--main-color);
+                    font-family: var(--font-family);
+                    font-size: clamp(20px, 2vw, 40px);
+                    font-weight: var(--font-weight-bold);
+                }
+
+
+            }
+
+            .product-desc {
+
+                h2 {
+                    color: var(--main-color);
+                    font-family: var(--font-family);
+                    font-size: clamp(20px, 2vw, 40px);
+                    font-weight: var(--font-weight-bold);
+                }
+
+                p {
+                    margin-top: 10px;
+                    color: var(--main-color);
+                    font-family: var(--font-family);
+                    font-size: clamp(10px, 2vw, 14px);
+                    font-weight: var(--font-weight-regular);
+                }
+            }
+        }
+    }
+
+    .reviews {
+        margin-top: 50px;
+        padding: 30px;
+
+        h2 {
+            color: var(--main-color);
+            font-family: var(--font-family);
+            font-size: clamp(24px, 2vw, 36px);
+            font-weight: var(--font-weight-regular);
+        }
+
+        .review-card {
+            margin-top: 5px;
+            .review-user-info {
+                display: flex;
+                align-items: center; /* Выравнивание по вертикали, чтобы изображение и текст были по центру */
+
+                img {
+                    width: 68px;
+                    height: auto;
+                }
+
+                .user-info {
+                    margin-left: 10px;
+                    p {
+                        color: var(--main-color);
+                        font-family: var(--font-family);
+                        font-size: clamp(12px, 2vw, 20px);
+                        font-weight: var(--font-weight-regular);
+                    }
+    
+                    span {
+                        display: block;
+                        color: var(--main-color);
+                        font-family: var(--font-family);
+                        font-size: clamp(12px, 2vw, 20px);
+                        font-weight: var(--font-weight-regular);
+                    }
+                }
+                
+            }
+
+            .review-description {
+
+                p {
+                    margin-top: 7px;
+                    color: var(--main-color);
+                    font-family: var(--font-family);
+                    font-size: clamp(12px, 2vw, 16px);
+                    font-weight: var(--font-weight-regular);
+                }
+            }
+        }
+    }
+
+    .review-form-block {
+        margin-top: 20px;
+        padding: 30px;
+
+        h2 {
+            color: var(--main-color);
+            font-family: var(--font-family);
+            font-size: clamp(24px, 2vw, 36px);
+            font-weight: var(--font-weight-regular);
+        }
+
+        p {
+            margin: 6px 0 0 3px;
+            color: var(--gray-color);
+            font-family: var(--font-family);
+            font-size: clamp(12px, 2vw, 16px);
+            font-weight: var(--font-weight-regular);
+        }
+        
+        .review-form {
+            margin-top: 20px;
+            h3 {
+                color: var(--main-color);
+                font-family: var(--font-family);
+                font-size: clamp(14px, 2vw, 24px);
+                font-weight: var(--font-weight-regular);
+            }
+
+            .input-fields {
+                width: 100%;
+                margin-top: 20px;
+                p {
+                    color: var(--main-color);
+                    font-family: var(--font-family);
+                    font-size: clamp(12px, 2vw, 20px);
+                    font-weight: var(--font-weight-regular);
+                }
+    
+                input {
+                    background-color: #CBE3F4;
+                    border-radius: 5px;
+                    border: none;
+                    width: 100%;
+                    height: 40px;
+                }
+    
+                textarea {
+                    background-color: #CBE3F4;
+                    border-radius: 5px;
+                    border: none;
+                    width: 100%;
+                    height: 40px;
+                }
+                
+                button {
+                    font-family: 'Open Sans', sans-serif;
+                    height: 60px;
+                    width: 40%;
+                    background-color: #3f76f7;
+                    color: #fff;
+                    font-size: clamp(12px, 2vw, 20px);
+                    margin-top: 40px;
+                    border-radius: 10px;
+                    border: none;
+                }
+               
+            }
+        }
+        
+    }
+}

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link
+            href="https://fonts.googleapis.com/css?family=Open+Sans:300,regular,500,600,700,800,300italic,italic,500italic,600italic,700italic,800italic"
+            rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa:300,regular,500,600,700" rel="stylesheet" />
+
+    <link rel="stylesheet" href="/css/cart.css" />
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <title>Cart</title>
+</head>
+
+<body>
+<header>
+    <nav>
+        <div class="left-section">
+            <a href="/main"><img src="/images/logoimage.png"></a>
+            <ul class="main-links">
+                <li><a href="/main">Главная</a></li>
+                <li><a href="/catalog">Каталог</a></li>
+            </ul>
+        </div>
+        <ul class="icon-links">
+            <li><a href="/cart" data-tooltip="Корзина"><iconify-icon icon="uil:cart" width="30" height="30"></iconify-icon></a></li>
+            <li><a href="/favorite" data-tooltip="Избранное"><iconify-icon icon="mdi:heart-outline" width="30" height="30"></iconify-icon></a></li>
+            <li><a href="/profile" data-tooltip="Профиль"><iconify-icon icon="iconamoon:profile" width="30" height="30"></iconify-icon></a></li>
+            <li><a href="/authorization" data-tooltip="Вход"><iconify-icon icon="uil:signin" width="30" height="30"></iconify-icon></a></li>
+        </ul>
+    </nav>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col col-8">
+            <section id="cartItem" class="info-block cart-block">
+                <h2>Корзина</h2>
+                <hr>
+                <div th:each="cartItem, iterStat : ${cartItems}" class="cart-product">
+                    <a th:href="@{'/catalog/product/' + ${cartItem.productId}}">
+                        <img th:if="${cartItem.product != null and not #lists.isEmpty(cartItem.product.photos)}"
+                             th:src="@{'/images/' + ${cartItem.product.photos[0].url} + '.png'}" class="half-size-image">
+                        <img th:unless="${cartItem.product != null and not #lists.isEmpty(cartItem.product.photos)}"
+                             class="half-size-image">
+                    </a>
+                    <div class="cart-product-info block-grid">
+                        <div class="div">
+                            <h3>Название</h3>
+                            <p th:text="${cartItem.getProductName()}"></p>
+                        </div>
+                        <div class="div">
+                            <h3>Цена</h3>
+                            <p th:text="${cartItem.getProductPrice()}"></p>
+                        </div>
+                    </div>
+                    <div class="product-icons">
+                        <form action="/add-to-favorites" method="post" th:action="@{/add-to-favorites}" th:object="${favoriteForm}" th:method="post">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                            <input type="hidden" name="productId" th:value="${cartItem.getProductId()}">
+                        </form>
+                        <iconify-icon icon="ic:outline-delete" width="40" height="40" class="deleteIcon" th:data-product-id="${cartItem.getProductId()}"></iconify-icon>
+                    </div>
+                </div>
+                <hr>
+            </section>
+        </div>
+        <div class="col col-4">
+            <section class="info-block final-cart-block">
+                <h2>Итого</h2>
+                <div class="atribute">
+                    <p>Количество товаров:</p>
+                    <span th:text="${totalQuantity}"></span>
+                </div>
+                <div class="atribute">
+                    <p>Итоговая сумма:</p>
+                    <span th:text="${totalAmount}"></span>
+                </div>
+                <form method="get" action="/payment">
+                    <input type="hidden" name="totalQuantity" th:value="${totalQuantity}" />
+                    <input type="hidden" name="totalAmount" th:value="${totalAmount}" />
+                    <button>Заказать</button>
+                </form>
+            </section>
+        </div>
+    </div>
+</div>
+<footer>
+    <div class="left-section">
+        <div class="logo-section">
+            <img src="/images/logoimage.png" alt="">
+        </div>
+        <br>
+        <div class="social-section">
+            <p class="connect">Связаться с нами</p>
+            <br>
+            <div class="social-networks">
+                <a href="https://t.me/s/stdpetrovich?before=1191" target="_blank"><img src="/images/telegram.png" alt="Telegram">  </a>
+                <a href="https://www.facebook.com/petrovichstd/?locale=ru_RU" target="_blank"><img src="/images/facebook.png" alt="Facebook"></a>
+                <a href="https://vk.com/petrovichstd" target="_blank"><img src="/images/vk.png" alt="VK"></a>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="center-section">
+        <div class="contact-section">
+            <p>Email: buildingshop@gmail.com</p>
+            <p>Phone: +8 (800) 800-2560</p>
+            <p>Address: 4619 ул. Большие Котелки д.121 пом.2, Москва</p>
+        </div>
+        <br>
+        <br>
+        <div class="support-section">
+            <a href="/support">Свяжитесь со службой поддержки</a>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="bottom-section">
+        <div class="copyright-section">
+            <p>&copy; 2013-2023 Building Materials. Все права защищены.</p>
+        </div>
+    </div>
+    </div>
+</footer>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('.product-icons').click(function() {
+            location.reload();
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $(".deleteIcon").on("click", function () {
+            var productId = $(this).data("product-id");
+            console.log("Deleting product with ID: " + productId);
+            deleteProductFromCart(productId);
+        });
+        function deleteProductFromCart(cartItemId) {
+            cartItemId = parseInt(cartItemId);
+            $.ajax({
+                type: "POST",
+                url: "/remove-from-cart",
+                data: { cartItemId: cartItemId },
+                beforeSend: function (xhr) {
+                    var csrfToken = $("meta[name='_csrf']").attr("content");
+                    var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+                    xhr.setRequestHeader(csrfHeader, csrfToken);
+                },
+                success: function (data) {
+                    if (data === "Success") {
+                        $(this).closest(".cart-product").remove();
+                    } else {
+                        console.error("Server returned an error: " + data);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error during AJAX request:", xhr.responseText);
+                }
+            });
+        }
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $(".increaseQuantity").on("click", function () {
+            var productId = $(this).data("product-id");
+            updateQuantity(productId, "increase");
+        });
+
+        $(".decreaseQuantity").on("click", function () {
+            var productId = $(this).data("product-id");
+            updateQuantity(productId, "decrease");
+        });
+
+        function updateQuantity(cartItemId, action) {
+            $.post("/update-quantity", { action: action, cartItemId: cartItemId }, function (data) {
+                if (data === "Success") {
+                    // Если сервер успешно обработал запрос, обновите количество на странице
+                    if (action === "increase") {
+                        increaseQuantityOnPage(cartItemId);
+                    } else if (action === "decrease") {
+                        decreaseQuantityOnPage(cartItemId);
+                    }
+                } else {
+                    console.error("Server returned an error: " + data);
+                }
+            });
+        }
+
+        function increaseQuantityOnPage(cartItemId) {
+            var quantityElement = $("#productQuantity-" + cartItemId);
+            var currentQuantity = parseInt(quantityElement.text());
+            quantityElement.text(currentQuantity + 1);
+        }
+
+        function decreaseQuantityOnPage(cartItemId) {
+            var quantityElement = $("#productQuantity-" + cartItemId);
+            var currentQuantity = parseInt(quantityElement.text());
+
+            if (currentQuantity > 1) {
+                quantityElement.text(currentQuantity - 1);
+            }
+        }
+    });
+</script>
+
+<script>
+    var csrfToken = $("meta[name='_csrf']").attr("content");
+    var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+
+    $(document).ready(function () {
+        $(".deleteIcon").on("click", function () {
+            var productId = $(this).data("product-id");
+            console.log("Deleting product with ID: " + productId);
+            deleteProductFromCart(productId);
+        });
+
+        function deleteProductFromCart(cartItemId) {
+            $.ajax({
+                type: "POST",
+                url: "/remove-from-cart",
+                data: { cartItemId: cartItemId },
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader(csrfHeader, csrfToken);
+                },
+                success: function (data) {
+                    if (data === "Success") {
+                        location.reload();
+                    } else {
+                        console.error("Server returned an error: " + data);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error during AJAX request:", xhr.responseText);
+                }
+            });
+        }
+    });
+</script>
+
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+</html>

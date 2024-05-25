@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdminPanel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #ffffff; /* Белый фон */
+            color: #1f1f1f; /* Темный текст */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        canvas {
+            margin-top: 20px;
+            background-color: #ffffff; /* Белый фон для холста */
+            margin-bottom: 20px;
+            width: 70%;
+            height: 70%;
+        }
+
+        label {
+            color: #1f1f1f; /* Темный цвет для меток */
+            margin-right: 10px;
+            font-size: 1.5em;
+        }
+
+        a {
+            color: #1f1f1f; /* Темный цвет для ссылок */
+            font-size: 1.5em;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<br>
+<br>
+<canvas id="pieChart" height="400"></canvas>
+<br>
+<br>
+<a href="/admin-page">Вернуться</a>
+
+<script th:inline="javascript">
+    /* <![CDATA[ */
+    // Получаем данные из сервера (переданные из контроллера)
+    var allLabels = /*[[${labels}]]*/ [];
+    var allData = /*[[${data}]]*/ [];
+
+    // Инициализируем круговую диаграмму с полными данными
+    var pieData = {
+        labels: allLabels,
+        datasets: [{
+            data: allData,
+            backgroundColor: getRandomColors(allData.length), // Генерация случайных цветов
+            borderWidth: 2,
+        }]
+    };
+
+    var ctx = document.getElementById('pieChart').getContext('2d');
+    var pieChart = new Chart(ctx, {
+        type: 'pie',
+        data: pieData,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+                position: 'right',
+            },
+        }
+    });
+
+    // Генерация случайных цветов для круговой диаграммы
+    function getRandomColors(count) {
+        var colors = [];
+        for (var i = 0; i < count; i++) {
+            colors.push('#' + Math.floor(Math.random()*16777215).toString(16));
+        }
+        return colors;
+    }
+    /* ]]> */
+</script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Категории</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Подключение стилей -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+    <style>
+        /* Новые стили */
+        body {
+            background-color: #1f1f1f;
+            color: #fff;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background-color: #111; /* Черный с оттенком */
+            color: #fff;
+        }
+
+        table, th, td {
+            border: 1px solid #333; /* Черный с оттенком */
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .edit-button, .delete-button, .add-button, .back-button {
+            text-decoration: none;
+            padding: 5px 10px;
+            margin: 2px;
+            border-radius: 5px;
+            display: inline-block;
+            transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+        .edit-button i, .delete-button i, .add-button i, .back-button i {
+            margin-right: 5px;
+        }
+
+        .edit-button:hover, .delete-button:hover, .add-button:hover, .back-button:hover {
+            transform: scale(1.1);
+            color: #333; /* Темно-серый */
+        }
+
+        .edit-button {
+            border: 1px solid #ff5722; /* Оранжевый */
+            background-color: #ff5722; /* Оранжевый */
+            color: #fff;
+        }
+
+        .edit-button:hover {
+            background-color: #f4511e; /* Оранжевый с темным оттенком при наведении */
+        }
+
+        .delete-button {
+            border: 1px solid #f44336; /* Красный */
+            background-color: #f44336; /* Красный */
+            color: #fff;
+        }
+
+        .delete-button:hover {
+            background-color: #d32f2f; /* Красный с темным оттенком при наведении */
+        }
+
+        .add-button, .back-button {
+            padding: 10px 20px;
+            color: #fff;
+        }
+
+        .add-button {
+            background-color: #ff5722; /* Оранжевый */
+        }
+
+        .add-button:hover {
+            background-color: #f4511e; /* Оранжевый с темным оттенком при наведении */
+        }
+
+        .back-button {
+            background-color: #800000; /* Темно-красный */
+        }
+
+        .back-button:hover {
+            background-color: #640000; /* Темно-красный с темным оттенком при наведении */
+        }
+
+        /* Добавим яркие оранжевые вставки */
+        .accent-orange-bg {
+            background-color: #ff6f00; /* Яркий оранжевый */
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+
+        /* Стиль заголовков и текста */
+        h2, p {
+            color: #ff5722; /* Оранжевый */
+        }
+
+        /* Остальные стили остаются без изменений */
+
+    </style>
+</head>
+<body>
+<div th:switch="${suppliers}" class="container my-5">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+
+            <div th:case="*">
+                <h2 class="my-5 text-center">Поставщики</h2>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Название</th>
+                        <th>Адрес</th>
+                        <th>Электронная почта</th>
+                        <th>Номер телефона</th>
+                        <th>Поставляемые товары</th>
+                        <th>Изменение</th>
+                        <th>Удаление</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="supplier : ${suppliers}">
+                        <td th:text="${supplier.name}"></td>
+                        <td th:text="${supplier.address}"></td>
+                        <td th:text="${supplier.email}"></td>
+                        <td th:text="${supplier.phoneNumber}"></td>
+                        <td th:text="${supplier.deliveryItems}"></td>
+                        <td>
+                            <a th:href="@{/suppliers/editSupplier/{id}(id=${supplier.id})}" class="edit-button">
+                                <i class="fas fa-edit"></i> Изменить
+                            </a>
+                        </td>
+                        <td>
+                            <a th:href="@{/suppliers/deleteSupplier/{id}(id=${supplier.id})}" class="delete-button">
+                                <i class="fas fa-trash"></i> Удалить
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="my-5 text-center">
+                <a href="/suppliers/addSupplier" class="add-button">
+                    <i class="fas fa-plus"></i> Добавить поставщика
+                </a>
+            </p>
+            <p class="my-5 text-center">
+                <a href="/operations" class="back-button">
+                    <i class="fas fa-arrow-left"></i> Назад
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,142 @@
+:root {
+  --main-color: #000;
+  --font-family: Comfortaa;
+  --font-weight-bold: 700;
+  --font-weight-regular: 400;
+}
+
+.info-block {
+  width: 100%;
+  background-color: #fff;
+  border: 1px var(--main-color);
+  border-radius: 15px;
+  box-shadow: -7px 3px 20px grey;
+}
+
+.block-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  padding: 20px;
+}
+
+.profile-block {
+  margin-top: 59px;
+}
+.profile-block .profile-img-name {
+  display: flex;
+  justify-content: space-between;
+}
+.profile-block .profile-img-name .person-info {
+  display: flex;
+  align-items: center;
+}
+.profile-block .profile-img-name .person-info img {
+  border-radius: 100px;
+  width: 60px;
+  height: 60px;
+  max-width: 60px;
+  max-height: 60px;
+  margin: 10px;
+}
+.profile-block .profile-img-name .person-info h3 {
+  color: var(--main-color);
+  font-family: var(--font-family);
+  font-size: clamp(20px, 2vw, 28px);
+  font-style: normal;
+  font-weight: var(--font-weight-regular);
+  line-height: normal;
+}
+.profile-block .profile-img-name button {
+  height: 48px;
+  margin: 5px;
+  background: #0079A8;
+  color: #fff;
+  border-radius: 17px;
+  border: none;
+  font-family: "Open Sans";
+  font-size: 18px;
+  margin: 20px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.profile-block .profile-img-name button:hover {
+  transform: scale(1.1);
+  background-color:#1a4dff;;
+}
+
+.profile-block {
+  margin-top: 59px;
+}
+.profile-block p {
+  color: var(--main-color);
+  font-family: var(--font-family);
+  font-size: clamp(16px, 2vw, 25px);
+  font-weight: var(--font-weight-bold);
+  position: relative;
+}
+.profile-block span {
+  display: block;
+  margin-top: 5px;
+  color: var(--main-color);
+  font-family: var(--font-family);
+  font-size: clamp(12px, 2vw, 22px);
+  font-weight: var(--font-weight-regular);
+}
+
+.order-block {
+  margin-top: 35px;
+}
+.order-block h3 {
+  color: var(--main-color);
+  font-family: var(--font-family);
+  font-size: clamp(16px, 2vw, 25px);
+  font-weight: var(--font-weight-bold);
+}
+.order-block span {
+  display: block;
+  margin-top: 10px;
+  color: var(--main-color);
+  font-family: var(--font-family);
+  font-size: clamp(10px, 2vw, 18px);
+  font-weight: var(--font-weight-regular);
+}
+
+.actual-order-block {
+  margin-top: 35px;
+}
+.actual-order-block h2 {
+  padding: 20px 0 0 20px;
+  color: var(--main-color);
+  font-family: var(--font-family);
+  font-size: clamp(20px, 2vw, 38px);
+  font-weight: var(--font-weight-regular);
+}
+.actual-order-block .actual-order {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  align-items: center;
+  justify-content: center;
+}
+.actual-order-block .actual-order img {
+  max-height: 250px;
+  width: auto;
+  border: 1px;
+  border-color: #000;
+  padding: 20px;
+}
+.actual-order-block .actual-order .actual-order-info h3 {
+  color: var(--main-color);
+  font-family: var(--font-family);
+  font-size: clamp(10px, 2vw, 18px);
+  font-style: normal;
+  font-weight: var(--font-weight-bold);
+  line-height: normal;
+}
+.actual-order-block .actual-order .actual-order-info p {
+  margin-top: 5px;
+  color: var(--main-color);
+  font-family: var(--font-family);
+  font-size: clamp(12px, 2vw, 22px);
+  font-weight: var(--font-weight-regular);
+}

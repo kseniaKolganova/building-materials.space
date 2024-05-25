@@ -1,0 +1,39 @@
+footer {
+    width: 100%;
+    background-color: #F9AC2F;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 100px;
+    padding: 20px; /* Add some padding for spacing */
+
+    img {
+        height: auto;
+        max-width: 10vw;
+        margin-bottom: 10px; /* Add some space below the logo */
+    }
+
+    .connect {
+        font-size: clamp(16px, 4vw, 32px);
+        margin: 5px 0; /* Adjust margin for paragraphs */
+    }
+
+    .social-networks {
+        display: flex;
+        gap: 10px; /* Adjust the gap between social media icons */
+        margin-bottom: 10px; /* Add some space below the social media icons */
+
+        img {
+            max-width: 5vw;
+            height: auto;
+        }
+    }
+
+    a {
+        text-decoration: none;
+        color: #000;
+        font-weight: bold;
+        margin-bottom: 10px; /* Add some space below the support link */
+    }
+}

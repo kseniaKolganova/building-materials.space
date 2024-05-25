@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link
+            href="https://fonts.googleapis.com/css?family=Open+Sans:300,regular,500,600,700,800,300italic,italic,500italic,600italic,700italic,800italic"
+            rel="stylesheet" />
+    <link rel="stylesheet" href="/css/catalog.css" />
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <title>Document</title>
+</head>
+
+<body>
+<header>
+    <nav>
+        <div class="left-section">
+            <a href="/main"><img src="/images/logoimage.png"></a>
+            <ul class="main-links">
+                <li><a href="/main">Главная</a></li>
+                <li><a href="/catalog">Каталог</a></li>
+            </ul>
+        </div>
+        <ul class="icon-links">
+
+            <li><a href="/cart" data-tooltip="Корзина"><iconify-icon icon="uil:cart" width="30" height="30"></iconify-icon></a></li>
+            <li><a href="/favorite" data-tooltip="Избранное"><iconify-icon icon="mdi:heart-outline" width="30" height="30"></iconify-icon></a></li>
+            <li><a href="/profile" data-tooltip="Профиль"><iconify-icon icon="iconamoon:profile" width="30" height="30"></iconify-icon></a></li>
+            <li><a href="/authorization" data-tooltip="Вход"><iconify-icon icon="uil:signin" width="30" height="30"></iconify-icon></a></li>
+        </ul>
+    </nav>
+</header>
+<div class="container">
+    <h2>С Т Р О Й М А Т Е Р И А Л Ы</h2>
+    <div class="search container justify-content-center">
+        <div class="row">
+            <form class="col" id="searchForm" onsubmit="return searchProducts();">
+                <input class="form-control " id="searchInput" type="text" name="keyword" placeholder="Поиск...">
+            </form>
+            <form class="col" id="filterForm" method="get" action="/catalog/filter">
+                <select class="form-select form-select-lg mb-3 col" id="categorySelect" name="categoryId">
+                    <option selected>Все категории</option>
+                    <option value="1">Строительные материалы</option>
+                    <option value="2">Инструменты</option>
+                    <option value="3">Сантехника</option>
+                </select>
+            </form>
+            <form class="col" id="sortForm" method="get" action="/catalog/sort">
+                <select class="form-select form-select-lg mb-3 col"  id="sortSelect" name="sortOption">
+                    <option selected>Сортировать по</option>
+                    <option value="1">Цена (по возрастанию)</option>
+                    <option value="2">Цена (по убыванию)</option>
+                    <option value="3">Название (по алфавиту)</option>
+                </select>
+            </form>
+        </div>
+    </div>
+    <section class="pagin">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination pagination-lg">
+                <li class="page-item" th:if="${productPage.hasPrevious()}">
+                    <a class="page-link" th:href="@{'/catalog?page=' + ${productPage.previousPageable().pageNumber} + '&size=' + ${productPage.size}}">&laquo;</a>
+                </li>
+                <li class="page-item" th:each="pageNumber : ${#numbers.sequence(0, productPage.totalPages - 1)}">
+                    <a class="page-link" th:href="@{'/catalog?page=' + ${pageNumber} + '&size=' + ${productPage.size}}" th:text="${pageNumber + 1}"></a>
+                </li>
+                <li class="page-item" th:if="${productPage.hasNext()}">
+                    <a class="page-link" th:href="@{'/catalog?page=' + ${productPage.nextPageable().pageNumber} + '&size=' + ${productPage.size}}">&raquo;</a>
+                </li>
+            </ul>
+        </nav>
+    </section>
+    <section id="productList">
+        <div class="row">
+            <div class="col"
+                 th:each="product : ${products}"
+                 th:data-name="${#strings.toLowerCase(product.name)}"
+                 th:data-category="${product.category.id}">
+
+                <a  th:href="@{'/catalog/product/' + ${product.id}}" class="card">
+                    <img th:attr="src=@{/images/__${product.photos[0].url}__.png}" alt=""/>
+                    <br>
+                    <p class="card-name" th:text="${product.name}"></p>
+                    <br>
+                    <br>
+                    <p class="card-price" th:text="${product.price}"></p>
+                </a>
+            </div>
+        </div>
+    </section>
+</div>
+<br>
+<br>
+<footer>
+    <div class="left-section">
+        <div class="logo-section">
+            <img src="/images/logoimage.png" alt="">
+        </div>
+        <br>
+        <div class="social-section">
+            <p class="connect">Связаться с нами</p>
+            <br>
+            <div class="social-networks">
+                <a href="https://t.me/s/stdpetrovich?before=1191" target="_blank"><img src="/images/telegram.png" alt="Telegram">  </a>
+                <a href="https://www.facebook.com/petrovichstd/?locale=ru_RU" target="_blank"><img src="/images/facebook.png" alt="Facebook"></a>
+                <a href="https://vk.com/petrovichstd" target="_blank"><img src="/images/vk.png" alt="VK"></a>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="center-section">
+        <div class="contact-section">
+            <p>Email: buildingshop@gmail.com</p>
+            <p>Phone: +8 (800) 800-2560</p>
+            <p>Address: 4619 ул. Большие Котелки д.121 пом.2, Москва</p>
+        </div>
+        <br>
+        <br>
+        <div class="support-section">
+            <a href="/support">Свяжитесь со службой поддержки</a>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="bottom-section">
+        <div class="copyright-section">
+            <p>&copy; 2013-2023 Building Materials. Все права защищены.</p>
+        </div>
+    </div>
+</footer>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+    function searchProducts() {
+        $("#searchInput").on("input", function() {
+            searchProducts();
+        });
+        function searchProducts() {
+            var keyword = $("#searchInput").val();
+
+            $.ajax({
+                type: "GET",
+                url: "/catalog/search",
+                data: { keyword: keyword },
+                success: function (data) {
+                    $("#productList").html(data);
+                }
+            });
+        }
+        return false;
+    }
+
+    function filterProducts() {
+        var categoryId = $("#categorySelect").val();
+        $.ajax({
+            type: "GET",
+            url: "/catalog/filter",
+            data: { categoryId: categoryId },
+            success: function (data) {
+                $("#productList").html(data);
+            }
+        });
+    }
+
+    function sortProducts() {
+        var sortOption = $("#sortSelect").val();
+        $.ajax({
+            type: "GET",
+            url: "/catalog/sort",
+            data: { sortOption: sortOption },
+            success: function (data) {
+                $("#productList").html(data);
+            }
+        });
+    }
+    $('#searchInput').on('input', searchProducts);
+    $('#categorySelect').on('change', filterProducts);
+    $('#sortSelect').on('change', sortProducts);
+</script>
+
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+</html>

@@ -1,0 +1,167 @@
+@import url(https://fonts.googleapis.com/css?family=Comfortaa:300,regular,500,600,700);
+
+
+body {
+    background-color: #F9F9F9;
+
+    .container {
+
+        h2 {
+            margin-top: 40px;
+            text-align: center;
+            color: #000;
+            font-family: Comfortaa;
+            font-size: clamp(18px, 3vw, 64px);
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            color: #000;
+        }
+
+        .search {
+            
+
+            input {
+                background-color: #CBE3F4;
+                border-radius: 15px;
+                border: none;
+                width: clamp(100px, 450px, 400px);
+                /* Используем 100% вместо фиксированного значения */
+                height: 45px;
+                margin-top: 10px;
+            }
+
+            select {
+                margin: 10px;
+                width: 100%;
+                /* Используем 100% вместо фиксированного значения */
+            }
+
+            nav {
+                grid-column: 4;
+            }
+        }
+
+
+        section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .col {
+
+
+                .card {
+                    width: 100%;
+                    min-width: 150px;
+                    max-width: 250px;
+                    background: #FFFFFF;
+                    box-shadow: 0px 8px 70px rgba(0, 0, 0, 0.07);
+                    border-radius: 10px;
+                    margin: 20px auto;
+                    padding: 10px;
+                    transition: 1s;
+                    text-decoration: none;
+
+                    &::after {
+                        position: absolute;
+                        height: 100%;
+                    }
+
+                    &:hover {
+                        transform: scale(1.05);
+                        backface-visibility: hidden
+                    }
+
+                    img {
+                        max-width: 100%;
+                        max-height: 100%;
+                        height: 150px;
+                        border-radius: 5px;
+                        transition: 1s;
+                    }
+
+
+                    .card-name {
+                        font-family: 'Open Sans';
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 22px;
+                        line-height: 25px;
+                        color: #030A1B;
+                        min-height: 50px;
+                    }
+
+                    .card-price {
+                        color: #000;
+                        font-family: Open Sans;
+                        font-size: 18px;
+                        font-style: normal;
+                        font-weight: 600;
+                        line-height: normal;
+
+                        &::after {
+                            content: '₽';
+                            /* Unicode character for the ruble sign */
+                            margin-left: 4px;
+                            /* Adjust the spacing between the price and the ruble sign */
+                        }
+                    }
+
+                    
+
+                    button {
+                        margin-top: 10px;
+                        height: 44px;
+                        background: #2E6EFF;
+                        border: none;
+                        border-radius: 5px;
+                        color: #fff;
+                        font-family: 'Open Sans';
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 16px;
+                        line-height: 42px;
+                        text-align: center;
+                        text-decoration: none;
+                    }
+                }
+
+            }
+        }
+    
+        .description {
+            margin-top: 100px;
+
+            h2 {
+                color: #0079A8;
+                text-align: center;
+                font-family: Comfortaa;
+                font-size: clamp(28px, 4vw, 48px);
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+            }
+
+            .desc-title {
+                color: #000;
+                text-align: center;
+                font-family: Open Sans;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                font-size: clamp(14px, 3vw, 24px);
+            }
+
+            .desc-text {
+                color: #000;
+                font-family: Open Sans;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                font-size: clamp(12px, 3vw, 16px);
+            }
+
+        }
+    }
+}

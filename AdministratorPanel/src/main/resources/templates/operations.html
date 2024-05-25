@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crud Operations</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1f1f1f;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        /* Page Title Styles */
+        .page-title {
+            text-align: center;
+            font-size: 36px;
+            color: #F9AC2F;
+            margin: 20px 0;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        /* Secondary Page Title Styles */
+        .page-title-second {
+            text-align: center;
+            font-size: 24px;
+            color: #69d5f2;
+            margin: 20px 0;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        /* Animation Keyframes */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        /* Section Styles */
+        section {
+            margin-bottom: 30px;
+        }
+
+        /* Updated Rule for Sections */
+        .main-content section {
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: space-around;
+        }
+
+        /* Block Styles */
+        .block {
+            text-align: center;
+            cursor: pointer;
+            border: 2px solid #f9ac2f;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+            background-color: #2f2f2f;
+            margin: 10px;
+            padding: 20px;
+            overflow: hidden;
+            animation: pulse 2s infinite;
+        }
+
+        .block:hover {
+            transform: scale(1.1);
+        }
+
+        /* Image Styles */
+        .block img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .block:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Text Styles */
+        .block span {
+            color: #fff;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1 class="page-title animated">CRUD операции - Building Materials Shop</h1>
+
+<h2 class="page-title-second animated">Поставка продукции на склад</h2>
+
+<main class="main-content">
+
+    <section>
+
+        <div class="block" onclick="window.location.href='/applications'">
+            <img src="/images/applicationslogo.png">
+            <br>
+            <br>
+            <span>Заявка <br>
+                </span>
+        </div>
+
+        <div class="block" onclick="window.location.href='/application-status'">
+            <img src="/images/applicationsstatuslogo.png">
+            <br>
+            <br>
+            <span>Статус заявки <br>
+                </span>
+        </div>
+
+        <div class="block" onclick="window.location.href='/compoundApplications'">
+            <img src="/images/applicationscompoundlogo.png">
+            <br>
+            <br>
+            <span>Состав заявки <br>
+                </span>
+        </div>
+
+        <div class="block" onclick="window.location.href='/suppliers'">
+            <img src="/images/supplerlogo.png">
+            <br>
+            <br>
+            <span>Поставщик
+                продукции <br>
+                </span>
+        </div>
+
+    </section>
+
+    <h2 class="page-title-second animated">Продукция магазина </h2>
+
+    <section>
+        <div class="block" onclick="window.location.href='/categories'">
+            <img src="/images/categoriesproductlogo.png">
+            <br>
+            <br>
+            <span>Категории товара <br>
+        </span>
+        </div>
+
+        <div class="block" onclick="window.location.href='/photos'">
+            <img src="/images/photoproductlogo.png">
+            <br>
+            <br>
+            <span>Фото товара <br>
+        </span>
+        </div>
+
+        <div class="block" onclick="window.location.href='/products'">
+            <img src="/images/productlogo.png">
+            <br>
+            <br>
+            <span>Товар <br>
+        </span>
+        </div>
+
+        <div class="block" onclick="window.location.href='/reviews'">
+            <img src="/images/rewiewslogo.png">
+            <br>
+            <br>
+            <span>Отзывы о товаре <br>
+        </span>
+        </div>
+
+    </section>
+
+    <!-- Section 2: Secondary Page Title -->
+    <h2 class="page-title-second animated">Заказы и Пользователи</h2>
+
+    <section>
+
+        <!-- Three Divs in the Section -->
+        <div class="block" onclick="window.location.href='/orders'">
+            <img src="/images/orderslogo.png">
+            <br>
+            <br>
+            <span>Заказы <br>
+        </span>
+        </div>
+
+        <div class="block" onclick="window.location.href='/orderStatuses'">
+            <img src="/images/orderstatuslogo.png">
+            <br>
+            <br>
+            <span>Статус заказов <br>
+        </span>
+        </div>
+
+        <div class="block" onclick="window.location.href='/employees'">
+            <img src="/images/employeelogo.png">
+            <br>
+            <br>
+            <span>Сотрудники <br>
+        </span>
+        </div>
+
+    </section>
+</main>
+</body>
+</html>

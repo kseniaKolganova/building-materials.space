@@ -1,0 +1,128 @@
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Comfortaa:300,regular,500,600,700);
+body {
+  background-color: #F9F9F9;
+}
+body .container h2 {
+  margin-top: 40px;
+  text-align: center;
+  color: #000;
+  font-family: Comfortaa;
+  font-size: clamp(18px, 3vw, 64px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: #000;
+}
+body .container .search input {
+  background-color: #CBE3F4;
+  border-radius: 15px;
+  border: none;
+  width: 400px;
+  height: 45px;
+  margin-top: 10px;
+}
+body .container .search select {
+  margin: 10px;
+  width: 100%;
+}
+body .container .search nav {
+  grid-column: 4;
+}
+body .container section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body .container section .col .card {
+  width: 250px;
+  height: 370px;
+  background: #FFFFFF;
+  box-shadow: 0px 8px 70px rgba(0, 0, 0, 0.07);
+  border-radius: 10px;
+  margin: 20px auto;
+  padding: 10px;
+  transition: 1s;
+  text-decoration: none;
+}
+body .container section .col .card::after {
+  position: absolute;
+  height: 100%;
+}
+body .container section .col .card:hover {
+  transform: scale(1.05);
+  backface-visibility: hidden;
+}
+body .container section .col .card a img {
+  width: 150px;
+  height: 150px;
+  border-radius: 5px;
+  transition: 1s;
+}
+body .container section .col .card .card-name {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 25px;
+  color: #030A1B;
+  min-height: 50px;
+  text-align: center
+}
+body .container section .col .card .card-price {
+  color: #000;
+  font-family: Open Sans;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-align: center
+}
+body .container section .col .card .card-price::after {
+  content: "₽";
+  margin-left: 4px;
+}
+body .container section .col .card button {
+  margin-top: 10px;
+  height: 44px;
+  background: #2E6EFF;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 42px;
+  text-align: center;
+  text-decoration: none;
+}
+body .container .description {
+  margin-top: 100px;
+}
+body .container .description h2 {
+  color: #0079A8;
+  text-align: center;
+  font-family: Comfortaa;
+  font-size: clamp(28px, 4vw, 48px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+body .container .description .desc-title {
+  color: #000;
+  text-align: center;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  font-size: clamp(14px, 3vw, 24px);
+}
+body .container .description .desc-text {
+  color: #000;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  font-size: clamp(12px, 3vw, 16px);
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdminPanel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Новые стили */
+        body {
+            background-color: #1f1f1f;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 80vh;
+        }
+
+        canvas {
+            margin-top: 20px;
+            background-color: #333; /* Темно-серый фон для холста */
+            margin-bottom: 20px;
+            width: 80%;
+        }
+
+
+    </style>
+</head>
+<body>
+<br>
+<br>
+
+<canvas id="barChart" height="400"></canvas>
+<br>
+<br>
+
+<form action="/order-count-chart" method="get">
+    <label for="startDate">Начальная дата:</label>
+    <input type="date" id="startDate" name="startDate" th:value="${#dates.format(startDate, 'yyyy-MM-dd')}" required>
+
+    <label for="endDate">Конечная дата:</label>
+    <input type="date" id="endDate" name="endDate" th:value="${#dates.format(endDate, 'yyyy-MM-dd')}" required>
+
+    <button type="submit">Обновить</button>
+</form>
+
+<a href="/admin-page">Вернуться</a>
+
+<script th:inline="javascript">
+    /* <![CDATA[ */
+    // Получаем данные из сервера (переданные из контроллера)
+    var allLabels = /*[[${labels}]]*/ [];
+    var allData = /*[[${data}]]*/ [];
+    var startDate = /*[[${startDate}]]*/ null;
+    var endDate = /*[[${endDate}]]*/ null;
+
+    // Инициализируем столбчатую диаграмму с полными данными
+    var barData = {
+        labels: allLabels,
+        datasets: [{
+            label: 'Количество заказов по дням',
+            data: allData,
+            backgroundColor: getRandomColors(allData.length), // Генерация случайных цветов
+            borderWidth: 2,
+        }]
+    };
+
+    var ctx = document.getElementById('barChart').getContext('2d');
+    var barChart = new Chart(ctx, {
+        type: 'bar',
+        data: barData,
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Количество заказов'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Дата'
+                    }
+                }
+            },
+            legend: {
+                display: false,
+            }
+        }
+    });
+
+    // Генерация случайных цветов для столбчатой диаграммы
+    function getRandomColors(count) {
+        var colors = [];
+        for (var i = 0; i < count; i++) {
+            colors.push('#' + Math.floor(Math.random()*16777215).toString(16));
+        }
+        return colors;
+    }
+    /* ]]> */
+</script>
+</body>
+</html>

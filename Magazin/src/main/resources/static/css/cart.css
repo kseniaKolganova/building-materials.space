@@ -1,0 +1,213 @@
+@charset "UTF-8";
+
+:root {
+  --main-color: #000;
+  --font-family: Comfortaa;
+  --font-weight-bold: 700;
+  --font-weight-regular: 400;
+}
+
+.info-block {
+  width: 100%;
+  background-color: #fff;
+  border: 1px var(--main-color);
+  border-radius: 15px;
+  box-shadow: -7px 3px 20px grey;
+}
+
+.block-grid {
+  display: grid;
+  grid-gap: 20px;
+  padding: 20px;
+}
+
+.profile-block {
+  margin-top: 59px;
+}
+
+.profile-block .profile-img-name {
+  display: flex;
+  align-items: center;
+}
+
+.profile-block .profile-img-name img {
+  border-radius: 100px;
+  width: 60px;
+  height: 60px;
+  max-width: 60px;
+  max-height: 60px;
+  margin: 10px;
+}
+
+.profile-block .profile-img-name h3 {
+  color: var(--main-color);
+  font-family: var(--font-family);
+  font-size: clamp(20px, 2vw, 28px);
+  font-style: normal;
+  font-weight: var(--font-weight-regular);
+  line-height: normal;
+}
+
+.profile-block p {
+  color: var(--main-color);
+  font-family: var(--font-family);
+  font-size: clamp(16px, 2vw, 25px);
+  font-weight: var(--font-weight-bold);
+  position: relative;
+}
+
+.profile-block span {
+  display: block;
+  margin-top: 5px;
+  color: var(--main-color);
+  font-family: var(--font-family);
+  font-size: clamp(12px, 2vw, 22px);
+  font-weight: var(--font-weight-regular);
+}
+
+.row .col {
+  margin-top: 35px;
+}
+
+.row .col .cart-block h2 {
+  padding: 20px 0 0 20px;
+  color: var(--main-color);
+  font-family: var(--font-family);
+  font-size: clamp(20px, 2vw, 38px);
+  font-weight: var(--font-weight-regular);
+}
+
+.row .col .cart-block .cart-product {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.cart-product img {
+  max-width: 200px;
+  height: auto;
+  display: block;
+  margin: 10px;
+  float: left;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.row .col .cart-block .cart-product .cart-product-info {
+  margin-left: 20px;
+  flex-grow: 1;
+}
+
+.row .col .cart-block .cart-product .cart-product-info h3 {
+  color: var(--main-color);
+  font-family: var(--font-family);
+  font-size: clamp(10px, 2vw, 18px);
+  font-style: normal;
+  font-weight: var(--font-weight-bold);
+  line-height: normal;
+}
+
+.row .col .cart-block .cart-product .cart-product-info p {
+  margin-top: 5px;
+  color: var(--main-color);
+  font-family: var(--font-family);
+  font-size: clamp(12px, 2vw, 22px);
+  font-weight: var(--font-weight-regular);
+}
+
+.row .col .cart-block .cart-product .product-count {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.row .col .cart-block .cart-product .product-count .counter button {
+  color: var(--main-color);
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-regular);
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  background-color: #fff;
+  font-size: 24px;
+  color: fff;
+  box-shadow: -3px 3px 10px grey;
+}
+
+.row .col .cart-block .cart-product .product-count .counter span {
+  color: var(--main-color);
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-regular);
+  font-size: 32px;
+  padding: 20px;
+}
+
+.row .col .cart-block .cart-product .product-icons {
+  position: absolute;
+  color: red;
+  bottom: 0;
+  right: 0;
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.row .col .cart-block .cart-product:hover .product-icons {
+  transform: scale(1.2);
+}
+
+.row .col .final-cart-block {
+  padding: 20px;
+  position: relative;
+}
+
+.row .col .final-cart-block h2 {
+  color: var(--main-color);
+  font-family: var(--font-family);
+  font-size: clamp(20px, 2vw, 38px);
+  font-weight: var(--font-weight-regular);
+}
+
+.row .col .final-cart-block .atribute {
+  margin-top: 15px;
+  display: flex;
+}
+
+.row .col .final-cart-block .atribute p {
+  color: var(--main-color);
+  font-family: var(--font-family);
+  font-size: clamp(12px, 2vw, 22px);
+  font-weight: var(--font-weight-regular);
+}
+
+.row .col .final-cart-block .atribute span {
+  padding-left: 20px;
+  color: var(--main-color);
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-regular);
+  font-size: 18px;
+  align-self: flex-start;
+}
+
+.deleteIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.row .col .final-cart-block button {
+  height: 48px;
+  width: 60%;
+  margin-top: 15px;
+  background: #2E6EFF;
+  color: #fff;
+  border-radius: 17px;
+  border: none;
+  font-family: "Open Sans";
+  font-size: 16px;
+  vertical-align: middle;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.row .col .final-cart-block button:hover {
+  transform: scale(1.1);
+  background-color:#1a4dff;;
+}

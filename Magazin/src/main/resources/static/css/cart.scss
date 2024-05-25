@@ -1,0 +1,207 @@
+:root {
+    --main-color: #000;
+    --font-family: Comfortaa;
+    --font-weight-bold: 700;
+    --font-weight-regular: 400;
+}
+
+.info-block {
+    width: 100%;
+    background-color: #fff;
+    border: 1px var(--main-color);
+    border-radius: 15px;
+    box-shadow: -7px 3px 20px grey;
+}
+
+.block-grid {
+    display: grid;
+    grid-gap: 20px;
+    padding: 20px;
+}
+
+.profile-block {
+    margin-top: 59px;
+
+    .profile-img-name {
+        display: flex;
+        align-items: center;
+
+        img {
+            border-radius: 100px;
+            width: 60px;
+            height: 60px;
+            max-width: 60px;
+            max-height: 60px;
+            margin: 10px;
+        }
+
+        h3 {
+            color: var(--main-color);
+            font-family: var(--font-family);
+            font-size: clamp(20px, 2vw, 28px);
+            font-style: normal;
+            font-weight: var(--font-weight-regular);
+            line-height: normal;
+        }
+    }
+
+}
+
+.profile-block {
+    margin-top: 59px;
+
+    p {
+        color: var(--main-color);
+        font-family: var(--font-family);
+        font-size: clamp(16px, 2vw, 25px);
+        font-weight: var(--font-weight-bold);
+        position: relative;
+    }
+
+    span {
+        display: block;
+        margin-top: 5px;
+        color: var(--main-color);
+        font-family: var(--font-family);
+        font-size: clamp(12px, 2vw, 22px);
+        font-weight: var(--font-weight-regular);
+    }
+}
+.row {
+    .col {
+        margin-top: 35px;
+
+        .cart-block {
+        
+            h2 {
+                padding: 20px 0 0 20px;
+                color: var(--main-color);
+                font-family: var(--font-family);
+                font-size: clamp(20px, 2vw, 38px);
+                font-weight: var(--font-weight-regular);
+            }
+            .cart-product {
+                display: flex;
+                align-items: center;
+                position: relative;
+
+                img {
+                    max-height: 250px;
+                    width: auto;
+                    border: 1px ;
+                    border-color: #000;
+                    padding: 20px;
+                }
+            
+                .cart-product-info {
+        
+                    h3 {
+                        color: var(--main-color);
+                        font-family: var(--font-family);
+                        font-size: clamp(10px, 2vw, 18px);
+                        font-style: normal;
+                        font-weight: var(--font-weight-bold);
+                        line-height: normal;
+                    }
+                
+                    p {
+                        margin-top: 5px;
+                        color: var(--main-color);
+                        font-family: var(--font-family);
+                        font-size: clamp(12px, 2vw, 22px);
+                        font-weight: var(--font-weight-regular);
+                    }
+                }
+                
+                .product-count {
+                    display: flex;
+                    flex-direction: column; /* Расположение элементов в столбце */
+                    align-items: center; /* Выравнивание по центру по горизонтали */
+
+                    .counter {
+
+                        button {
+                            color: var(--main-color);
+                            font-family: var(--font-family);
+                            font-weight: var(--font-weight-regular);
+                            width: 50px;
+                            height: 50px;
+                            border-radius: 10px;
+                            background-color: #fff;
+                            font-size: 24px;
+                            color: fff;
+                            box-shadow: -3px 3px 10px grey;
+                        }
+            
+                        span {
+                            color: var(--main-color);
+                            font-family: var(--font-family);
+                            font-weight: var(--font-weight-regular);
+                            font-size: 32px;
+                            padding: 20px;
+                        }
+                    }                    
+                }
+
+                .product-icons {
+                    position: absolute; /* Добавлено свойство position: absolute */
+                    bottom: 0; /* Выравнивание по нижнему краю */
+                    right: 0; /* Выравнивание по правому краю */
+                    padding: 20px;
+
+
+                }
+            }
+        }
+
+        .final-cart-block {
+            padding: 20px;
+            position: relative;
+            h2 {
+                color: var(--main-color);
+                font-family: var(--font-family);
+                font-size: clamp(20px, 2vw, 38px);
+                font-weight: var(--font-weight-regular);
+            }
+
+            .atribute {
+                margin-top: 15px;
+                display: flex;
+                p {
+                    color: var(--main-color);
+                    font-family: var(--font-family);
+                    font-size: clamp(12px, 2vw, 22px);
+                    font-weight: var(--font-weight-regular);
+                }
+
+                span {
+                    padding-left: 20px;
+                    color: var(--main-color);
+                    font-family: var(--font-family);
+                    font-weight: var(--font-weight-regular);
+                    font-size: 18px;
+                    align-self: flex-start; /* Выравнивание span с верхней частью контейнера */
+
+                }
+            }
+
+            button {
+                height: 48px;
+                width: 60%;
+                /* Ширина в 50% от родительского элемента */
+                margin-top: 15px;
+                background: #2E6EFF;
+                color: #fff;
+                border-radius: 17px;
+                border: none;
+                font-family: 'Open Sans';
+                font-size: 16px;
+                vertical-align: middle;
+                /* Выравнивание по вертикали */
+
+            }
+        }
+    }
+}
+
+

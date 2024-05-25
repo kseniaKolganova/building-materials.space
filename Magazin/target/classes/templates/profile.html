@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link
+            href="https://fonts.googleapis.com/css?family=Open+Sans:300,regular,500,600,700,800,300italic,italic,500italic,600italic,700italic,800italic"
+            rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa:300,regular,500,600,700" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/profile.css" />
+    <link rel="stylesheet" href="/css/reset.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <title>Document</title>
+</head>
+
+<body>
+<header>
+    <nav>
+        <div class="left-section">
+            <a href="/main"><img src="/images/logoimage.png"></a>
+            <ul class="main-links">
+                <li><a href="/main">Главная</a></li>
+                <li><a href="/catalog">Каталог</a></li>
+            </ul>
+        </div>
+        <ul class="icon-links">
+
+            <li><a href="/cart" data-tooltip="Корзина"><iconify-icon icon="uil:cart" width="30" height="30"></iconify-icon></a></li>
+            <li><a href="/favorite" data-tooltip="Избранное"><iconify-icon icon="mdi:heart-outline" width="30" height="30"></iconify-icon></a></li>
+            <li><a href="/profile" data-tooltip="Профиль"><iconify-icon icon="iconamoon:profile" width="30" height="30"></iconify-icon></a></li>
+            <li><a href="/authorization" data-tooltip="Вход"><iconify-icon icon="uil:signin" width="30" height="30"></iconify-icon></a></li>
+        </ul>
+    </nav>
+</header>
+<div class="container">
+    <section class="info-block profile-block">
+        <div class="profile-img-name">
+            <div class="person-info">
+                <img src="/images/avatar.png" alt="">
+                <h3> <span th:text="${client.name}"></span></h3>
+            </div>
+            <button id="editProfileButton">Изменить профиль</button>
+        </div>
+        <div class="profile-info block-grid">
+            <div class="column">
+                <p>Имя</p>
+                <span th:text="${client.name}"></span>
+            </div>
+            <div class="column">
+                <p>Фамилия</p>
+                <span th:text="${client.surname}"></span>
+            </div>
+            <div class="column">
+                <p>Отчество</p>
+                <span th:text="${client.middlename}"></span>
+            </div>
+            <div class="column">
+                <p>Логин</p>
+                <span th:text="${client.login}"></span>
+            </div>
+            <div class="column">
+                <p>Почта</p>
+                <span th:text="${client.email}"></span>
+            </div>
+        </div>
+    </section>
+    <section class="info-block block-grid order-block ">
+        <div>
+            <h3 th:text="${totalOrderAmount}"></h3>
+            <span>Общая сумма заказов</span>
+        </div>
+        <div th:if="${client.orders.size() > 0}">
+            <h3>Есть</h3>
+            <span>Активные заказы</span>
+        </div>
+        <div th:unless="${client.orders.size() > 0}">
+            <h3>Нет</h3>
+            <span>Активных заказов</span>
+        </div>
+
+    </section>
+    <section class="info-block actual-order-block">
+        <h2>Активные заказы</h2>
+        <hr>
+        <div th:each="order : ${client.orders}">
+            <div class="actual-order">
+                <img th:src="@{'/images/withoutimage.png'}" alt="">
+                <div class="actual-order-info block-grid">
+                    <div class="div">
+                        <h3>Дата заказа</h3>
+                        <p th:text="${#dates.format(order.orderDate, 'dd.MM.yyyy')}"></p>
+                    </div>
+                    <div class="div">
+                        <h3>Сумма заказа</h3>
+                        <p th:text="${order.totalAmount}"></p>
+                    </div>
+                    <div class="div">
+                        <h3>Адрес доставки</h3>
+                        <p th:text="${order.deliveryAddress}"></p>
+                    </div>
+                    <div class="div">
+                        <h3>Номер заказа</h3>
+                        <p th:text="${order.orderNumber}"></p>
+                    </div>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </section>
+</div>
+<footer>
+    <div class="left-section">
+        <div class="logo-section">
+            <img src="/images/logoimage.png" alt="">
+        </div>
+        <br>
+        <div class="social-section">
+            <p class="connect">Связаться с нами</p>
+            <br>
+            <div class="social-networks">
+                <a href="https://t.me/s/stdpetrovich?before=1191" target="_blank"><img src="/images/telegram.png" alt="Telegram">  </a>
+                <a href="https://www.facebook.com/petrovichstd/?locale=ru_RU" target="_blank"><img src="/images/facebook.png" alt="Facebook"></a>
+                <a href="https://vk.com/petrovichstd" target="_blank"><img src="/images/vk.png" alt="VK"></a>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="center-section">
+        <div class="contact-section">
+            <p>Email: buildingshop@gmail.com</p>
+            <p>Phone: +8 (800) 800-2560</p>
+            <p>Address: 4619 ул. Большие Котелки д.121 пом.2, Москва</p>
+        </div>
+        <br>
+        <br>
+        <div class="support-section">
+            <a href="/support">Свяжитесь со службой поддержки</a>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="bottom-section">
+        <div class="copyright-section">
+            <p>&copy; 2013-2023 Building Materials. Все права защищены.</p>
+        </div>
+    </div>
+</footer>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+<div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editProfileModalLabel">Изменить профиль</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editProfileForm" th:object="${client}" action="/editProfile" method="post">
+                    <meta name="_csrf" th:content="${_csrf.token}" />
+                    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
+
+                    <label for="newName">Новое имя:</label>
+                    <input type="text" id="newName" name="newName" class="form-control" th:data-default-value="${client.name}" required minlength="2" maxlength="50">
+                    <div class="invalid-feedback">Пожалуйста, введите новое имя.</div>
+
+                    <label for="newSurname">Новая фамилия:</label>
+                    <input type="text" id="newSurname" name="newSurname" class="form-control" th:data-default-value="${client.surname}" required minlength="2" maxlength="50">
+                    <div class="invalid-feedback">Пожалуйста, введите новую фамилию.</div>
+
+                    <label for="newMiddlename">Новое отчество:</label>
+                    <input type="text" id="newMiddlename" name="newMiddlename" class="form-control" th:data-default-value="${client.middlename}">
+                    <div class="invalid-feedback">Пожалуйста, введите новое отчество.</div>
+
+                    <label for="newLogin">Новый логин:</label>
+                    <input type="text" id="newLogin" name="newLogin" class="form-control" th:data-default-value="${client.login}" required minlength="6" maxlength="40" pattern="[A-Za-z0-9]+">
+                    <div class="invalid-feedback">Пожалуйста, введите новый логин. </div>
+
+                    <label for="newEmail">Новая почта:</label>
+                    <input type="email" id="newEmail" name="newEmail" class="form-control" th:data-default-value="${client.email}" required>
+                    <div class="invalid-feedback">Пожалуйста, введите новую почту.</div>
+
+                    <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('editProfileButton').addEventListener('click', function () {
+        populateFormWithDefaultValues();
+        $('#editProfileModal').modal('show');
+    });
+    function populateFormWithDefaultValues() {
+        var form = document.getElementById('editProfileForm');
+
+        for (var i = 0; i < form.elements.length; i++) {
+            var element = form.elements[i];
+
+            var defaultValue = element.getAttribute('data-default-value');
+
+            element.value = defaultValue;
+        }
+    }
+
+    document.getElementById('editProfileForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var newName = document.getElementById('newName').value;
+        var newSurname = document.getElementById('newSurname').value;
+        var newMiddlename = document.getElementById('newMiddlename').value;
+        var newLogin = document.getElementById('newLogin').value;
+        var newEmail = document.getElementById('newEmail').value;
+
+        $.ajax({
+            type: 'POST',
+            url: '/editProfile',
+            data: {
+                newName: newName,
+                newSurname: newSurname,
+                newMiddlename: newMiddlename,
+                newLogin: newLogin,
+                newEmail: newEmail
+            },
+            beforeSend: function(xhr) {
+                var token = $("meta[name='_csrf']").attr("content");
+                var header = $("meta[name='_csrf_header']").attr("content");
+                xhr.setRequestHeader(header, token);
+            },
+            success: function (response) {
+                $('#editProfileModal').modal('hide');
+                updateProfileData(response);
+            },
+
+            error: function (error) {
+            }
+
+        });
+        function updateProfileData(response) {
+            $('#clientName').text(response.newName);
+            $('#clientSurname').text(response.surname);
+            $('#clientMiddlename').text(response.middlename);
+            $('#clientLogin').text(response.login);
+            $('#clientEmail').text(response.email);
+
+            $('html, body').animate({ scrollTop: 0 }, 'fast');
+        }
+    });
+</script>
+
+</html>

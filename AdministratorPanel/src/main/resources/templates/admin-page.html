@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdminPanel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1f1f1f;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 36px;
+            color: #F9AC2F;
+            margin: 20px 0;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.01);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .main-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .block {
+            text-align: center;
+            cursor: pointer;
+            border: 2px solid #f9ac2f;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+            background-color: #2f2f2f;
+            margin: 10px;
+            padding: 20px;
+            overflow: hidden;
+            animation: pulse 2s infinite;
+        }
+
+        .block:hover {
+            transform: scale(1.1);
+        }
+
+        .block img {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .block:hover img {
+            transform: scale(1.1);
+        }
+
+        .block span {
+            color: #fff;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h1 class="page-title animated">Административная панель управления - Building Materials Shop</h1>
+
+<main class="main-content">
+    <div class="block" onclick="window.location.href='/order-count-chart'">
+        <img src="/images/statisticslogo.png">
+        <br>
+        <br>
+        <span>Статистика <br>
+            магазина </span>
+    </div>
+
+    <div class="block" onclick="window.location.href='/operations'">
+        <img src="/images/crudoperationslogo.png">
+        <br>
+        <br>
+        <span>CRUD <br>
+                действия</span>
+    </div>
+
+    <div class="block" onclick="window.location.href='/logs'">
+        <img src="/images/logslogo.png">
+        <br>
+        <br>
+        <span>Логи <br>
+            <br>
+        </span>
+    </div>
+
+    <div class="block" onclick="createBackup()">
+        <img src="/images/backupbdlogo.png">
+        <br>
+        <br>
+        <span>Back Up <br>
+                базы данных</span>
+    </div>
+
+    <!-- Repeat the above structure for each block -->
+</main>
+
+<script>
+    function createBackup() {
+        // Получение пути для сохранения резервной копии от пользователя
+        var backupPath = prompt("Укажите путь для сохранения резервной копии:");
+
+        // Проверка, чтобы не отправлять запрос, если пользователь отменил ввод
+        if (backupPath === null) {
+            return;
+        }
+
+        // Отправка запроса на сервер для выполнения резервного копирования с указанным путем
+        fetch('/backup/create?backupPath=' + encodeURIComponent(backupPath), {
+            method: 'GET'
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(data => alert(data))
+            .catch(error => alert('Ошибка: ' + error));
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!-- src/main/resources/templates/receipt.html -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/payment.css"/>
+    <title>Receipt</title>
+</head>
+
+<body>
+<div class="container">
+    <section class="info-block check-block">
+        <h2>Чек</h2>
+        <p th:text="'#' + ${order.orderNumber}"></p>
+        <img src="/images/qr-code.png" alt="">
+        <hr>
+        <div class="attribute">
+            <p>Дата:</p>
+            <span th:text="${#dates.format(order.orderDate, 'dd.MM.yyyy')}"></span>
+        </div>
+        <hr>
+        <hr>
+        <div class="final-cost">
+            <h2>Итого</h2>
+            <p th:text="${totalAmount}"></p>
+        </div>
+        <a href="/main">Вернуться на главную</a>
+    </section>
+</div>
+</body>
+
+</html>

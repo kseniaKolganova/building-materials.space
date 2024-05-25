@@ -1,0 +1,206 @@
+@import url(https://fonts.googleapis.com/css?family=Comfortaa:300,regular,500,600,700);
+
+img {
+    // min-width: 400px;
+    width: 100%;
+    height: auto;
+}
+
+body {
+    background-color: #F9F9F9;
+
+    .container {
+        margin-top: 50px;
+
+        .col {
+            align-items: center;
+            h2 {
+                color: #000;
+                font-family: 'Comfortaa';
+                font-size: clamp(40px, 4vw, 60px);
+                font-weight: 700;
+            }
+
+            p {
+                color: #6C696F;
+                font-family: 'Open Sans', sans-serif;
+                font-size: clamp(18px, 4vw, 30px);
+                font-weight: 400;
+            }
+
+            .main-picture {
+                // min-width: 400px;
+                width: 100%;
+                height: auto;
+            }
+            
+        }
+
+    }
+
+    .pluses {
+        width: 100%;
+        background-color: #F9AC2F;
+
+        .row {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 20px;
+            /* Adjust the padding as needed */
+
+
+            .col {
+                text-align: center;
+                position: relative;
+                margin: 0 10px;
+                /* Adjust the margin as needed */
+
+
+                img {
+                    width: 100%;
+                    opacity: 0.6;
+                    /* Adjust the opacity as needed */
+                }
+
+                p {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    color: #000;
+                    font-size: clamp(10px, 3vw, 28px);
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+
+    .container {
+    
+        section {
+            margin-top: 114px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            h2 {
+                color: #000;
+                font-family: Comfortaa;
+                font-size: clamp(18px, 3vw, 38px);
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+            }
+
+            .col {
+
+                .card {
+                    width: 90%;
+                    background: #fff;
+                    box-shadow: 0px 8px 70px rgba(0, 0, 0, 0.07);
+                    border-radius: 10px;
+                    position: relative;
+                    margin: 20px auto;
+                    transition: 1s;
+
+                    &::after {
+                        position: absolute;
+                        height: 100%;
+                    }
+
+                    &:hover {
+                        transform: scale(1.1);
+                        backface-visibility: hidden
+                    }
+
+                    img {
+                        max-width: 100%;
+                        max-height: 100%;
+                        height: 200px;
+                        border-radius: 5px;
+                        transition: 1s;
+                    }
+
+                    .info {
+                        padding: 10px;
+                        background-color: #fff;
+
+                        .card-name {
+                            font-family: Comfortaa;
+                            font-style: normal;
+                            font-weight: 600;
+                            font-size: 22px;
+                            line-height: 25px;
+                            color: #030A1B;
+                            min-height: 50px;
+                        }
+
+                        .card-price {
+                            color: #000;
+                            font-family: Comfortaa;
+                            font-size: 18px;
+                            font-style: normal;
+                            font-weight: 600;
+                            line-height: normal;
+
+                            &::after {
+                                content: '₽';
+                                /* Unicode character for the ruble sign */
+                                margin-left: 4px;
+                                /* Adjust the spacing between the price and the ruble sign */
+                            }
+                        }
+
+                    }
+
+                    button {
+                        height: 48px;
+                        margin: 5px;
+                        background: #0079A8;
+                        color: #fff;
+                        border-radius: 17px;
+                        border: none;
+                        font-family: 'Open Sans';
+                        font-size: 18px;
+                    }
+                }
+
+            }
+        }
+    
+        .description {
+            margin-top: 100px;
+
+            h2 {
+                color: #0079A8;
+                text-align: center;
+                font-family: Comfortaa;
+                font-size: clamp(28px, 4vw, 48px);
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+            }
+
+            .desc-title {
+                color: #000;
+                text-align: center;
+                font-family: Comfortaa;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                font-size: clamp(14px, 3vw, 24px);
+            }
+
+            .desc-text {
+                color: #000;
+                font-family: Comfortaa;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                font-size: clamp(12px, 3vw, 16px);
+            }
+
+        }
+    }
+}
